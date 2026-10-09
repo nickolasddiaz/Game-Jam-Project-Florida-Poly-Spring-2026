@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://do0y2wwglgffs"]
+[gd_scene format=3 uid="uid://crki5iqnyylt4"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dujfe"]
-width = 32
-height = 32
+width = 64
+height = 64
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5bbji"]
-size = Vector2(32, 32)
+size = Vector2(64, 64)
 
 [node name="Sprite2D" type="Sprite2D" unique_id=1577294057]
 texture = SubResource("NoiseTexture2D_dujfe")

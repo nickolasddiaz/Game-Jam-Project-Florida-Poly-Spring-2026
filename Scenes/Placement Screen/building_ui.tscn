@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://dnc6mkarnpawr"]
 
+[ext_resource type="Script" uid="uid://dwd4ou55bd1cf" path="res://Scenes/Placement Screen/BuildingUi.cs" id="1_mlrl1"]
+
 [node name="BuildingUi" type="CanvasLayer" unique_id=1396722294]
+script = ExtResource("1_mlrl1")
 
 [node name="BuildingScroll" type="ScrollContainer" parent="." unique_id=166360958]
 anchors_preset = -1

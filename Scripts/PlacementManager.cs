@@ -1,137 +1,189 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
 public partial class PlacementManager : Node2D
 {
-	//Focusing on Grid placement here.
-	public float cellSize = 32;
+    //So our validplacement uses this file to draw the grids.
 
-	//Variables for the hovering actions.
-	private Vector2I _hoveredCell;
-	private bool _mouseInsideGrid;
+    [Export]
+    public Color GridColor = new Color(0.5f, 0.5f, 0.5f, 0.8f);
+
+    [Export]
+    public PackedScene MySceneToSpawn {  get; set; }
+
+    public float cellsize = 32;
+
+    private TileMapLayer GridPlacement;
+
+    private Vector2I hoveredcell;
+
+    private bool mouseingrid;
+
+    private string buildingnames = "Crop Plot";
+        private Vector2I buildingsize = new Vector2I(1, 1);
+
+    //So we need a dictionary because we need to know WHAT we are moving IF we are actually going to implement moving/deleting
+    private Dictionary<Vector2I, Node2D> occupiedcells = new Dictionary<Vector2I, Node2D>();
+
+    public override void _Ready()
+    {
+        GridPlacement = GetNode<TileMapLayer>("GridPlacement");
+    }
+
+    public void SelectBuilding(string buildingname, Vector2I footprint, PackedScene bulidingscene)
+    {
+        buildingnames = buildingname;
+        buildingsize = footprint;
+        MySceneToSpawn = bulidingscene;
+
+        QueueRedraw();
+    }
+
+    public override void _Process(double delta)
+    {
+        //Finding the hovered cell and deciding whether to show the preview or not.
+        hoveredcell = GetMouseCell();
+        mouseingrid = IsCellInsideGrid(hoveredcell);
+
+        QueueRedraw();
+    }
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        base._UnhandledInput(@event);
+        //Basically ONLY accept MOUSE button inputs. Nothing more.
+
+        if (@event is not InputEventMouseButton mouseEvent)
+        {
+            return;
+        }
+
+        //Now we move on to ONLY accepting LEFT button presses.
+        if (mouseEvent.ButtonIndex != MouseButton.Left || !mouseEvent.Pressed)
+        {
+            return;
+        }
+        Vector2I clickedCell = GetMouseCell();
+
+        //Says no to any clicks outside and modified to include occupancy for multiple slots.
+        if (!CanPlaceBuilding(clickedCell))
+        {
+            return;
+        }
+        //Probably not necessary but making sure we assign as cene.
+        if (MySceneToSpawn == null)
+        {
+            return;
+        }
+        //If something is already there then no. because dictionary says so.
+        if (IsCellOccupied(clickedCell))
+        {
+            return;
+        }
+        //Create the actual building and spawn it at the center of the cells. 2x2 etc. so not like on click.
+        Node2D building = MySceneToSpawn.Instantiate<Node2D>();
+
+        //centering
+        Vector2I cencell = clickedCell + buildingsize - new Vector2I(1, 1);
+
+        building.Position = (GetCellCenter(clickedCell) + GetCellCenter(cencell)) / 2f;
+
+        //Basically putting it down/making sure that the cell is actually recorded and saved.
+        for (int x = 0; x < buildingsize.X; x++)
+        {
+            for (int y = 0; y < buildingsize.Y; y++)
+            {
+                Vector2I cell = clickedCell + new Vector2I(x, y);
+                occupiedcells.Add(cell, building);
+            }
+        }
+        AddChild(building);
+
+        QueueRedraw();
+        //debugging print we can remove this.
+        GD.Print("Placed");
+    }
 
 
-	//This is just testing because I dont have access to like UI rightn ow...
-	public Vector2I _buildingSize = new Vector2I(2, 1);
-	private Area2D ValidPlacement;
-	private bool _isMouseInside = false;
+    private bool IsCellOccupied(Vector2I cell)
+    {
+        //checking our dictionary with the saved thing that we did before
+        return occupiedcells.ContainsKey(cell);
 
-	public Vector2 RectAreaSize;
+    }
 
-	[Export] public Color GridColor = new Color(0.5f, 0.5f, 0.5f, 0.8f);
+    //Placing the building. THIS IS NOT THE PREVIEW. 
+    private bool CanPlaceBuilding(Vector2I clickcell)
+    {
+        for (int x = 0; x < buildingsize.X; x++)
+        {
+            for (int y = 0;y < buildingsize.Y; y++)
+            {
+                Vector2I cell = clickcell + new Vector2I(x, y);
 
-	[Export] public PackedScene MySceneToSpawn { get; set; }
+                //double check form aking we are in it and if something is in it.
+                if (!IsCellInsideGrid(cell) || IsCellOccupied(cell))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
-	public override void _Ready()
-	{
-		ValidPlacement = GetNode<Area2D>("%ValidPlacement");
+    private bool IsCellInsideGrid(Vector2I cell)
+    {
+        //so this is my old code...basically outlines the boundaries
+        return cell.X >= 2 && cell.X < 16 && cell.Y >= 2 && cell.Y < 10;
+    }
 
-		ValidPlacement.MouseEntered += OnMouseEntered;
-		ValidPlacement.MouseExited += OnMouseExited;
+    private Vector2I GetMouseCell()
+    {
+        Vector2 mouseposition = GridPlacement.GetLocalMousePosition();
 
-	}
+        return GridPlacement.LocalToMap(mouseposition);
+    }
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-		if (!_isMouseInside)
-		{
-			return;
-		}
-		
-		Vector2 mousePosition = GetLocalMousePosition();
-
-		_hoveredCell = new Vector2I(Mathf.FloorToInt(mousePosition.X / cellSize), Mathf.FloorToInt(mousePosition.Y / cellSize));
-
-
-		QueueRedraw();
-
-		//Basically, divindg the mouse position by 32 tells you which cell it is in. 
-		
-
-		//With getting the local mouse position, it does it with the camera view, and then we force a visual update whenever that happens. with the redraw.
-
-		//Then go back to draw after the grid lines loop(s).
-
-	}
-
-	//Basically this entire thing is checking input. We want to ONLY check left mouse input. If so, get mouse position, calculate, check occupancy.
-	public override void _UnhandledInput(InputEvent @event)
-	{
-		//Basically ONLY LEFT CLICK dont react to anything else...
-		if (@event is not InputEventMouseButton mouseEvent || mouseEvent.ButtonIndex != MouseButton.Left
-			|| !mouseEvent.Pressed)
-		{
-			return;
-		}
-
-		//Then we need to read the mouse position at the time that we CLICK
-		Vector2 mousePosition = GetLocalMousePosition();
-
-		Vector2I clickedCell = new Vector2I(Mathf.FloorToInt(mousePosition.X / cellSize), Mathf.FloorToInt(mousePosition.Y / cellSize));
+    private Vector2 GetCellCenter(Vector2I cell)
+    {
+        //Converting because we want to use tilemaps? Guess so.
+        Vector2 gridposition = GridPlacement.MapToLocal(cell);
+        Vector2 worldposition = GridPlacement.ToGlobal(gridposition);
+        return ToLocal(worldposition);
+    }
 
 
-		if (MySceneToSpawn.Instantiate() is Node2D spawnedInstance)
-		{
-			// 2. Add it to the tree first (best practice in Godot 4)
-			AddChild(spawnedInstance);
+    public override void _Draw()
+    {
+        if (!mouseingrid)
+        {
+            return;
+        }
 
-			// 3. Set its global position to your target coordinates
-			spawnedInstance.GlobalPosition = mousePosition;
-		}
+        //Since the rectangles origin is 0,0 they are drawn top left. This means we need to divide from the axis.
+        //Preview not artual building placement.
 
-	}
+        Vector2 cellposition = GetCellCenter(hoveredcell) - new Vector2(cellsize / 2f, cellsize / 2f);
 
-	//Draw function for a grid
+        //I dont know if we need this resize actually. It might double scale
+        Vector2 size = new Vector2(buildingsize.X * cellsize, buildingsize.Y * cellsize);
+        Rect2 preview = new Rect2(cellposition, size);
 
-	public override void _Draw()
-	{
-		if (!_isMouseInside)
-		{
-			return;
-		}
+        Color outlinecolor = Colors.Cyan;
 
-		Vector2 cellPosition = new Vector2(_hoveredCell.X * cellSize, _hoveredCell.Y * cellSize);			
-		Rect2 preview = new Rect2(cellPosition, new Vector2(cellSize, cellSize));
+        //modified this originally because we aren't dealing in soley 1x1 vectros anyrmore.
 
-		//So now we are checking and providing more context to the player.
-		//If its good, we will go blue, if not, and is obstructed, we go red.
+        if (!CanPlaceBuilding(hoveredcell))
+        {
+            outlinecolor = Colors.Red;
+        }
 
-		//Does something alredy occupy? placholer.
-		// bool isOccupied = _occupiedCells.Contains(_hoveredCell);
-		bool isOccupied = false;
+        Color fillcolor = outlinecolor;
+        fillcolor.A = 0.4f;
 
+        DrawRect(preview, fillcolor);
+        DrawRect(preview, outlinecolor, false, 2f);
 
-		Color fillColor;
-		Color outlineColor;
+    }
 
-		if (isOccupied)
-		{
-			fillColor = new Color(1f, 0.2f, 0.2f, 0.4f);
-			outlineColor = Colors.Red;
-		}
-		else
-		{
-			fillColor = new Color(0.2f, 0.8f, 1f, 0.4f);
-			outlineColor = Colors.Cyan;
-		}
-
-		//Temporary transparent fill thing I odnt know honestl
-		DrawRect(preview, fillColor);
-		DrawRect(preview, outlineColor, false, 2f);
-		
-	}
-
-	private void OnMouseEntered()
-	{
-		_isMouseInside = true;
-		GD.Print("Mouse entered the Area2D!");
-	}
-
-	private void OnMouseExited()
-	{
-		_isMouseInside = false;
-		GD.Print("Mouse left the Area2D.");
-	}
 }

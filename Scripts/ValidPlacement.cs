@@ -23,20 +23,17 @@ public partial class ValidPlacement : Area2D
 
 	public override void _Draw()
 	{
-		// Draw vertical lines
-		int cols = Mathf.CeilToInt(RectAreaSize.X / parent.cellSize);
-		for (int x = 0; x <= cols; x++)
+		//Doing our vertical lines
+		for (int x =2; x <= 16; x++)
 		{
-			float posX = x * parent.cellSize;
-			DrawLine(new Vector2(posX, 0), new Vector2(posX, RectAreaSize.Y), parent.GridColor);
+			DrawLine(new Vector2(x * parent.cellsize, 2 * parent.cellsize), new Vector2(x * parent.cellsize, 10 * parent.cellsize), parent.GridColor);
 		}
 
-		// Draw horizontal lines
-		int rows = Mathf.CeilToInt(RectAreaSize.Y / parent.cellSize);
-		for (int y = 0; y <= rows; y++)
+
+		//Horizontal line drawing
+		for (int y =2; y <= 10; y++)
 		{
-			float posY = y * parent.cellSize;
-			DrawLine(new Vector2(0, posY), new Vector2(RectAreaSize.X, posY), parent.GridColor);
+			DrawLine(new Vector2(2 * parent.cellsize, y *parent.cellsize), new Vector2(16 * parent.cellsize, y * parent.cellsize), parent.GridColor);
 		}
 	}
 }
