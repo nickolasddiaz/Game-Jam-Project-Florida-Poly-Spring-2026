@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://bygh0wno1dfkl"]
 
 [ext_resource type="Texture2D" uid="uid://cc6vd8yan7u4h" path="res://Assets/map.aseprite" id="1_30kv3"]
-[ext_resource type="Script" uid="uid://b5vxbbsp8d5pe" path="res://Scripts/PlacementManager.cs" id="2_q0gqs"]
-[ext_resource type="PackedScene" uid="uid://dnc6mkarnpawr" path="res://Scenes/Placement Screen/building_ui.tscn" id="3_4jtd1"]
+[ext_resource type="PackedScene" uid="uid://ca03mc2ql7j5k" path="res://Scenes/placement_manager.tscn" id="2_q0gqs"]
 
 [node name="GamePlayScene" type="Node2D" unique_id=370923773]
 texture_filter = 1
@@ -15,7 +14,6 @@ zoom = Vector2(1.804, 1.804)
 position = Vector2(320, 180)
 texture = ExtResource("1_30kv3")
 
-[node name="PlacementManager" type="Node2D" parent="." unique_id=2109072485]
-script = ExtResource("2_q0gqs")
-
-[node name="BuildingUi" parent="." unique_id=1396722294 instance=ExtResource("3_4jtd1")]
+[node name="PlacementManager" parent="." unique_id=1447108591 instance=ExtResource("2_q0gqs")]
+position = Vector2(59, 44)
+scale = Vector2(0.931, 0.872)
