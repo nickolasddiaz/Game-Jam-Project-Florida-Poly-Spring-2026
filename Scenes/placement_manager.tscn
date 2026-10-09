@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ca03mc2ql7j5k"]
+
+[ext_resource type="Script" uid="uid://b5vxbbsp8d5pe" path="res://Scripts/PlacementManager.cs" id="1_42yw4"]
+[ext_resource type="Script" uid="uid://cxqlct5cp8ihd" path="res://Scripts/ValidPlacement.cs" id="2_pler8"]
+[ext_resource type="PackedScene" uid="uid://do0y2wwglgffs" path="res://Scenes/Building.tscn" id="2_s7x5t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5bbji"]
+size = Vector2(484, 322)
+
+[node name="PlacementManager" type="Node2D" unique_id=1447108591]
+script = ExtResource("1_42yw4")
+GridColor = Color(0.5647059, 0.34509805, 0.93333334, 1)
+MySceneToSpawn = ExtResource("2_s7x5t")
+
+[node name="ValidPlacement" type="Area2D" parent="." unique_id=1558736646]
+unique_name_in_owner = true
+script = ExtResource("2_pler8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ValidPlacement" unique_id=825943291]
+position = Vector2(242, 161)
+shape = SubResource("RectangleShape2D_5bbji")

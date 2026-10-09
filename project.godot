@@ -11,13 +11,9 @@ config_version=5
 [application]
 
 config/name="Game Jam Project"
-run/main_scene="uid://dnu7n6siro8m2"
+run/main_scene="uid://bygh0wno1dfkl"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 
-[autoload]
-
-PlayerData="*uid://bq721fl18lpy0"
-ScreenManager="*uid://bcijc7biouvwl"
 
 [display]
 
