@@ -1,5 +1,5 @@
 c0e83e06aca998d5cb9486b71212f450
-::res://::1791517456
+::res://::1791553897
 README.md::TextFile::-1::1791499724::0::1::::<><><>0<>0<><>::
 ::res://addons/::1791499724
 ::res://addons/AsepriteWizard/::1791499725
@@ -114,7 +114,8 @@ tree_selection_confirmation_warning.gd::GDScript::3179478075229350465::179149972
 tree_selection_confirmation_warning.tscn::PackedScene::1136156742705764826::1791499725::0::1::::<><><>0<>0<><>::uid://blkfslrprkfmv::::res://addons/AsepriteWizard/interface/shared/tree/tree_selection_confirmation_warning.gd
 ::res://Assets/::1791503823
 map.aseprite::PortableCompressedTexture2D::4978496949632445313::1791499724::1791499724::1::::<><><>0<>0<>b410b08a93eebbd29eed6472eb4255f0<>res://.godot/imported/map.aseprite-136f8013005f21ede32c3998ea217324.res::
-::res://Assets/Buildings/::1791509960
+::res://Assets/Buildings/::1791554142
+spr_hut.aseprite::PackedDataContainer::5323732746987295605::1791557303::1791559612::1::::<><><>0<>0<>ad2aa21ea1b6de3b8d238a3c155f1ede<>res://.godot/imported/spr_hut.aseprite-2b8773cde84e6201ef8b8caa3b705c47.res::
 ::res://Assets/Buildings/CropTiles/::1791517456
 spr_cropTile.aseprite::PackedDataContainer::2597503860420226731::1791517171::1791517456::1::::<><><>0<>0<>c59d8eec29c1488ac10940e80279294c<>res://.godot/imported/spr_cropTile.aseprite-cac7e936d1727a693002e168189dbd97.res::
 ::res://Assets/Characters/::1791503845

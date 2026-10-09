@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ch34dohpulx4h"
+path="res://.godot/imported/spr_hut.aseprite-2b8773cde84e6201ef8b8caa3b705c47.res"
+
+[deps]
+
+source_file="res://Assets/Buildings/spr_hut.aseprite"
+dest_files=["res://.godot/imported/spr_hut.aseprite-2b8773cde84e6201ef8b8caa3b705c47.res"]
+
+[params]
+
