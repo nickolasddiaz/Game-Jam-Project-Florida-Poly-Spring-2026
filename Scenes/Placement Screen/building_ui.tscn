@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dnc6mkarnpawr"]
+
+[node name="BuildingUi" type="CanvasLayer" unique_id=1396722294]
+
+[node name="BuildingScroll" type="ScrollContainer" parent="." unique_id=166360958]
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -72.0
+offset_right = -8.0
+offset_bottom = -8.0
+vertical_scroll_mode = 0
+
+[node name="BuildingButtons" type="HBoxContainer" parent="BuildingScroll" unique_id=1956995753]
+layout_mode = 2
+
+[node name="Crop" type="Button" parent="BuildingScroll/BuildingButtons" unique_id=820793196]
+custom_minimum_size = Vector2(96, 48)
+layout_mode = 2
+text = "Crop Plot"
+
+[node name="Oven" type="Button" parent="BuildingScroll/BuildingButtons" unique_id=1745406945]
+custom_minimum_size = Vector2(96, 48)
+layout_mode = 2
+text = "Oven"
+
+[node name="Hut" type="Button" parent="BuildingScroll/BuildingButtons" unique_id=701528535]
+custom_minimum_size = Vector2(96, 48)
+layout_mode = 2
+text = "Hut"
