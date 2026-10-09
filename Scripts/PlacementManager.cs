@@ -19,6 +19,16 @@ public partial class PlacementManager : Node2D
 
     private bool mouseingrid;
 
+    public bool PlacementEnabled = true;
+
+
+    //this is more toggling for ui and the cyan color.
+    [Export]
+
+    public CanvasLayer PlacementUI;
+
+
+
     private string buildingnames = "Crop Plot";
         private Vector2I buildingsize = new Vector2I(1, 1);
 
@@ -28,6 +38,24 @@ public partial class PlacementManager : Node2D
     public override void _Ready()
     {
         GridPlacement = GetNode<TileMapLayer>("GridPlacement");
+
+        //THIS IS CONTROLLING THE PLACEMENT ENABLING
+        SetPlacementEnabled(true);
+    }
+
+    //toggling placement so that whenever we need to..buy mode...and whenever we need too...paly mode.
+    public void SetPlacementEnabled(bool enabled)
+    {
+        //THIS IS WHAT PROGRAMMERS WILL USE TO TOGLLE PLACEMENT SYSTEM. placementManager.SetPlacementEnabled(true) editing. or false; gameplay.
+        PlacementEnabled = true;
+
+        if (PlacementUI != null)
+        {
+            PlacementUI.Visible = enabled;
+        }
+        //Update the preview when it changes
+        QueueRedraw();
+        GetNode<Area2D>("%ValidPlacement").QueueRedraw();
     }
 
     public void SelectBuilding(string buildingname, Vector2I footprint, PackedScene bulidingscene)
@@ -51,7 +79,16 @@ public partial class PlacementManager : Node2D
     public override void _UnhandledInput(InputEvent @event)
     {
         base._UnhandledInput(@event);
+        //ignore placement and hide during gameplay
+        if (!PlacementEnabled)
+        {
+            return;
+        }
+
+
+
         //Basically ONLY accept MOUSE button inputs. Nothing more.
+
 
         if (@event is not InputEventMouseButton mouseEvent)
         {
@@ -155,6 +192,12 @@ public partial class PlacementManager : Node2D
 
     public override void _Draw()
     {
+        //more hiding stuff
+        if (!PlacementEnabled) {
+            return;
+        }
+
+        //if not thogh
         if (!mouseingrid)
         {
             return;

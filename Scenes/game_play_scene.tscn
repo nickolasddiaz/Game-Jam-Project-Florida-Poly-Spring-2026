@@ -21,7 +21,8 @@ position = Vector2(320, 180)
 position = Vector2(59, 44)
 scale = Vector2(0.931, 0.872)
 
-[node name="PlacementManager" parent="." unique_id=993788854 instance=ExtResource("2_4jtd1")]
+[node name="PlacementManager" parent="." unique_id=993788854 node_paths=PackedStringArray("PlacementUI") instance=ExtResource("2_4jtd1")]
+PlacementUI = NodePath("../BuildingUi")
 
 [node name="BuildingUi" parent="." unique_id=1396722294 node_paths=PackedStringArray("buttons") instance=ExtResource("3_ftlg0")]
 buttons = NodePath("../PlacementManager")

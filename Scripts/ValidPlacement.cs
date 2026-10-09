@@ -23,6 +23,12 @@ public partial class ValidPlacement : Area2D
 
 	public override void _Draw()
 	{
+		//hiding when gaming
+		if (!parent.PlacementEnabled)
+		{
+			return;
+		}
+
 		//Doing our vertical lines
 		for (int x =2; x <= 16; x++)
 		{
