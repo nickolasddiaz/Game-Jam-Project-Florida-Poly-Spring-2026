@@ -1,5 +1,5 @@
 c0e83e06aca998d5cb9486b71212f450
-::res://::1791507936
+::res://::1791517456
 README.md::TextFile::-1::1791499724::0::1::::<><><>0<>0<><>::
 ::res://addons/::1791499724
 ::res://addons/AsepriteWizard/::1791499725
@@ -114,19 +114,22 @@ tree_selection_confirmation_warning.gd::GDScript::3179478075229350465::179149972
 tree_selection_confirmation_warning.tscn::PackedScene::1136156742705764826::1791499725::0::1::::<><><>0<>0<><>::uid://blkfslrprkfmv::::res://addons/AsepriteWizard/interface/shared/tree/tree_selection_confirmation_warning.gd
 ::res://Assets/::1791503823
 map.aseprite::PortableCompressedTexture2D::4978496949632445313::1791499724::1791499724::1::::<><><>0<>0<>b410b08a93eebbd29eed6472eb4255f0<>res://.godot/imported/map.aseprite-136f8013005f21ede32c3998ea217324.res::
-::res://Assets/Buildings/::1791499724
+::res://Assets/Buildings/::1791509960
+::res://Assets/Buildings/CropTiles/::1791517456
+spr_cropTile.aseprite::PackedDataContainer::2597503860420226731::1791517171::1791517456::1::::<><><>0<>0<>c59d8eec29c1488ac10940e80279294c<>res://.godot/imported/spr_cropTile.aseprite-cac7e936d1727a693002e168189dbd97.res::
 ::res://Assets/Characters/::1791503845
-::res://Assets/Characters/Player/::1791507936
-Player.cs::CSharpScript::8346744905293883501::1791507911::0::1::::<><><>0<>0<><>::
-player.tscn::PackedScene::7801128239725818674::1791507667::0::1::::<><><>0<>0<><>::
+::res://Assets/Characters/Player/::1791509198
+Player.cs::CSharpScript::8346744905293883501::1791508707::0::1::::<>CharacterBody2D<><>0<>0<><>::
+player.tscn::PackedScene::7801128239725818674::1791509198::0::1::::<><><>0<>0<><>::uid://dq6hw0q6el6hl::::res://Assets/Characters/Player/Player.cs<>uid://cuxk58b45lns4::::res://Scripts/AnimationWrapperModule.cs
 spr_player_down.aseprite::SpriteFrames::2687474068808761262::1791507010::1791507151::1::::<><><>0<>0<>e1d7428a8356a7484a33c9de5d013ecf<>res://.godot/imported/spr_player_down.aseprite-c6ae0d00474d1a43861bb0cb9f854ec3.res::
 ::res://Assets/Placement Icons/::1791499724
 ::res://Assets/Product Icons/::1791499724
 ::res://Assets/Quests/::1791499724
 ::res://Audio/::1791499724
-::res://Scenes/::1791499724
-game_play_scene.tscn::PackedScene::4083810037594349867::1791499724::0::1::::<><><>0<>0<><>::uid://cc6vd8yan7u4h::::res://Assets/map.aseprite
+::res://Scenes/::1791508565
+game_play_scene.tscn::PackedScene::4083810037594349867::1791508565::0::1::::<><><>0<>0<><>::uid://cc6vd8yan7u4h::::res://Assets/map.aseprite<>uid://dje6pbmde0l6a::::res://Assets/Characters/Player/player.tscn
 ::res://Scenes/Game Manager/::1791499724
 ::res://Scenes/Placement Screen/::1791499724
 ::res://Scenes/Product Screen/::1791499724
-::res://Scripts/::1791499724
+::res://Scripts/::1791508444
+AnimationWrapperModule.cs::CSharpScript::6224761408408560717::1791509243::0::1::::<>AnimatedSprite2D<><>0<>0<><>::
