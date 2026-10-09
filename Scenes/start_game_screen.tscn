@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dnu7n6siro8m2"]
+
+[ext_resource type="Script" uid="uid://c3bytm0i707im" path="res://Scripts/screens/StartGameScreen.cs" id="1_07r4g"]
+
+[node name="StartGameScreen" type="Control" unique_id=9974333]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_07r4g")
+CreditsPath = "uid://b0x1u61gbxdk4"
+NextPath = "uid://clfnb2jidijvj"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=158365572]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.61180323, 0.762278, 0.95955426, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1410893941]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1074082975]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer" unique_id=326075033]
+layout_mode = 2
+text = "To be King"
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1034208851]
+layout_mode = 2
+alignment = 1
+
+[node name="StartGame" type="Button" parent="CenterContainer/VBoxContainer/ButtonContainer" unique_id=1797566834]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start Game"
+
+[node name="Credits" type="Button" parent="CenterContainer/VBoxContainer/ButtonContainer" unique_id=1676542695]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Credits"

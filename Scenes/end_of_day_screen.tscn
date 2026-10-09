@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://b7b5jocclw1kw"]
+
+[ext_resource type="Script" uid="uid://dnn6bqtct0a1u" path="res://Scripts/screens/EndOfDayScreen.cs" id="1_s8pdc"]
+
+[node name="EndOfDayScreen" type="Control" unique_id=104531555]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s8pdc")
+EndGamePath = "uid://do4flanxdj24k"
+NextTaskPath = "uid://xspc1addycll"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1407156766]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.61180323, 0.762278, 0.95955426, 1)
+
+[node name="Title" type="Label" parent="." unique_id=821379059]
+layout_mode = 0
+offset_left = 533.0
+offset_top = 74.0
+offset_right = 616.0
+offset_bottom = 97.0
+text = "Story Intro"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=1818520378]
+custom_maximum_size = Vector2(255, -1)
+layout_mode = 0
+offset_left = 438.0
+offset_top = 147.0
+offset_right = 693.0
+offset_bottom = 456.0
+text = "Timer Ran out bud"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Continue" type="Button" parent="." unique_id=1993363745]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 531.0
+offset_top = 509.0
+offset_right = 610.0
+offset_bottom = 540.0
+text = "Continue"
