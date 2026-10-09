@@ -1,1 +1,6 @@
+res://Assets/Characters/Player/obj_player.tscn
+res://Assets/Characters/Player/ObjPlayer.cs
+res://Assets/Characters/Player/Player.cs
+res://Assets/Characters/Player/player.tscn
+res://Scripts/AnimationWrapperModule.cs
 res://Scenes/game_play_scene.tscn
