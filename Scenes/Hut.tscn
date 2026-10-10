@@ -1,18 +1,18 @@
 [gd_scene format=3 uid="uid://crki5iqnyylt4"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5bbji"]
+size = Vector2(64, 64)
+
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dujfe"]
 width = 64
 height = 64
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5bbji"]
-size = Vector2(64, 64)
+[node name="Area2D" type="Area2D" unique_id=699028693]
 
-[node name="Sprite2D" type="Sprite2D" unique_id=1577294057]
-texture = SubResource("NoiseTexture2D_dujfe")
-
-[node name="Area2D" type="Area2D" parent="." unique_id=699028693]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1400505206]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1400505206]
 position = Vector2(0, 4.7683716e-07)
 scale = Vector2(0.9999999, 0.9999999)
 shape = SubResource("RectangleShape2D_5bbji")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1577294057]
+texture = SubResource("NoiseTexture2D_dujfe")
