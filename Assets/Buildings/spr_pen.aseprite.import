@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://buc460af134pr"
+path="res://.godot/imported/spr_pen.aseprite-75de5fc8790648742cbf64252cf633d1.res"
+
+[deps]
+
+source_file="res://Assets/Buildings/spr_pen.aseprite"
+dest_files=["res://.godot/imported/spr_pen.aseprite-75de5fc8790648742cbf64252cf633d1.res"]
+
+[params]
+
