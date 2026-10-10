@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://ca03mc2ql7j5k" path="res://Scenes/placement_manager.tscn" id="2_4jtd1"]
 [ext_resource type="PackedScene" uid="uid://dje6pbmde0l6a" path="res://Assets/Characters/Player/player.tscn" id="2_q0gqs"]
 [ext_resource type="PackedScene" uid="uid://dnc6mkarnpawr" path="res://Scenes/Placement Screen/building_ui.tscn" id="3_ftlg0"]
-[ext_resource type="PackedScene" uid="uid://cxd7mr8522w21" path="res://Scenes/CropPlot.tscn" id="4_dli2k"]
 [ext_resource type="PackedScene" uid="uid://bs5p1r27jbycs" path="res://Scenes/Product Screen/product_screen.tscn" id="4_ftlg0"]
-[ext_resource type="PackedScene" uid="uid://b3dlgmb6xebur" path="res://Scenes/Oven.tscn" id="5_n0myt"]
+[ext_resource type="PackedScene" uid="uid://dgsfq4kruaet1" path="res://Scenes/Product Screen/Buildings/BarleyCrop.tscn" id="4_n0myt"]
+[ext_resource type="PackedScene" uid="uid://ba857uvfx228s" path="res://Scenes/Product Screen/Buildings/BreadOven.tscn" id="5_n0myt"]
 [ext_resource type="PackedScene" uid="uid://crki5iqnyylt4" path="res://Scenes/Hut.tscn" id="6_nel3d"]
 
 [node name="GamePlayScene" type="Node2D" unique_id=370923773]
@@ -27,7 +27,7 @@ PlacementUI = NodePath("../BuildingUi")
 
 [node name="BuildingUi" parent="." unique_id=1396722294 node_paths=PackedStringArray("buttons") instance=ExtResource("3_ftlg0")]
 buttons = NodePath("../PlacementManager")
-Crop = ExtResource("4_dli2k")
+Crop = ExtResource("4_n0myt")
 Oven = ExtResource("5_n0myt")
 Hut = ExtResource("6_nel3d")
 

@@ -41,7 +41,7 @@ public partial class PlayerData : Node
 	public Godot.Collections.Dictionary<ProductType, int> productAmounts = new Godot.Collections.Dictionary<ProductType, int>();
 
 	public Godot.Collections.Dictionary<BuildingType, bool> isBuildingUnlockedDict = new Godot.Collections.Dictionary<BuildingType, bool>();
-	public int money = 0;
+	public int money = 5000;
 	public int day = 0;
 
 	public List<Day> DayInfo;

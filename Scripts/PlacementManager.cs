@@ -50,6 +50,24 @@ public partial class PlacementManager : Node2D
 
         //THIS IS CONTROLLING THE PLACEMENT ENABLING
         SetPlacementEnabled(true);
+
+        //ALOGNSIDE THE temporary toggle starting in editing mode so PLATYER clicks are disabled.
+        GetNode<Player>("../Player").SetControlEnabled(false);
+    }
+
+    //TEMPORARY TOGGLE SO THAT I CAN TEST FUNCTIONALITY OF THE GAME FULLY...
+    public override void _Input(InputEvent @event)
+    {
+            if (@event is InputEventKey key && key.Pressed && !key.Echo && key.Keycode == Key.F4)
+        {
+            SetPlacementEnabled(!PlacementEnabled);
+
+            Player player = GetNode<Player>("../Player");
+            player.SetControlEnabled(!PlacementEnabled);
+
+            GetViewport().SetInputAsHandled();
+
+        }
     }
 
     //toggling placement so that whenever we need to..buy mode...and whenever we need too...paly mode.
