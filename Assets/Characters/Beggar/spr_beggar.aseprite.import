@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cdwi6bcwrrtm"
+path="res://.godot/imported/spr_beggar.aseprite-d54d98ab69a6b097662042f2eefb9132.res"
+
+[deps]
+
+source_file="res://Assets/Characters/Beggar/spr_beggar.aseprite"
+dest_files=["res://.godot/imported/spr_beggar.aseprite-d54d98ab69a6b097662042f2eefb9132.res"]
+
+[params]
+
