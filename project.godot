@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Game Jam Project"
-run/main_scene="uid://bygh0wno1dfkl"
+run/main_scene="uid://dnu7n6siro8m2"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 
+[autoload]
+
+PlayerData="*res://Scenes/player_data.tscn"
+ScreenManager="*uid://bcijc7biouvwl"
 
 [display]
 
@@ -27,6 +31,10 @@ project/assembly_name="Game Jam Project"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
+
+[global_group]
+
+Buildings=""
 
 [input]
 

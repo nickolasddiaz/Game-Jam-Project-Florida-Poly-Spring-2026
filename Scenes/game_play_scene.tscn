@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bygh0wno1dfkl"]
 
 [ext_resource type="Texture2D" uid="uid://cc6vd8yan7u4h" path="res://Assets/map.aseprite" id="1_30kv3"]
-
 [ext_resource type="PackedScene" uid="uid://dje6pbmde0l6a" path="res://Assets/Characters/Player/player.tscn" id="2_q0gqs"]
+[ext_resource type="PackedScene" uid="uid://ca03mc2ql7j5k" path="res://Scenes/placement_manager.tscn" id="3_4jtd1"]
 
 [node name="GamePlayScene" type="Node2D" unique_id=370923773]
 texture_filter = 1
@@ -19,3 +19,6 @@ texture = ExtResource("1_30kv3")
 position = Vector2(59, 44)
 scale = Vector2(0.931, 0.872)
 
+[node name="PlacementManager2" parent="." unique_id=752908801 instance=ExtResource("3_4jtd1")]
+position = Vector2(61, 44)
+scale = Vector2(0.89111954, 0.79999995)

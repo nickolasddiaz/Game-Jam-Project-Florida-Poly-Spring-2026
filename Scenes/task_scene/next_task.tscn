@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://dnsq4712uoggw"]
+
+[ext_resource type="Script" uid="uid://bk0s7r7ws7lqw" path="res://Scripts/task_screen/next_task.cs" id="1_dfg12"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wdn4f"]
+font_size = 32
+
+[node name="NextTask" type="Control" unique_id=1261069243]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dfg12")
+NextPath = "uid://bygh0wno1dfkl"
+
+[node name="Background" type="ColorRect" parent="." unique_id=37201072]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.61272573, 0.2701221, 0.19464886, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=596793101]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -414.0
+offset_top = 59.0
+offset_right = 386.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=482016727]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TitleBackground" type="ColorRect" parent="HBoxContainer/VBoxContainer" unique_id=1081047008]
+custom_minimum_size = Vector2(600, 80)
+layout_mode = 2
+size_flags_horizontal = 6
+color = Color(0.15358326, 0.36808622, 0.343379, 1)
+
+[node name="Title" type="Label" parent="HBoxContainer/VBoxContainer/TitleBackground" unique_id=796162847]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -11.5
+offset_right = 37.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+text = "Your Next Task for the day"
+label_settings = SubResource("LabelSettings_wdn4f")
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/VBoxContainer" unique_id=1158873121]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/ScrollContainer" unique_id=346190094]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="InventoryGridContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer/ScrollContainer/MarginContainer" unique_id=1180643483]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 2
+layout_direction = 1
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 5
+
+[node name="Continue" type="Button" parent="." unique_id=623676944]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 162.0
+offset_top = 528.0
+offset_right = 962.0
+offset_bottom = 559.0
+text = "Continue"

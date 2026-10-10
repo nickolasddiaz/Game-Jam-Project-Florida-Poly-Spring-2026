@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s8pdc")
 EndGamePath = "uid://do4flanxdj24k"
-NextTaskPath = "uid://xspc1addycll"
+NextTaskPath = "uid://dnsq4712uoggw"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1407156766]
 layout_mode = 1
