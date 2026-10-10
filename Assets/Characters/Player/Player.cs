@@ -22,8 +22,13 @@ public partial class Player : CharacterBody2D
 
 	public override void _Ready()
 	{
+		
+
 		AddToGroup("player");
 	}
+
+	
+
 
 	public void ClearQueue()
 	{
@@ -33,6 +38,13 @@ public partial class Player : CharacterBody2D
 
 	public override void _UnhandledInput(InputEvent @event)
 	{
+		//Debugging
+		if (@event is InputEventMouseButton mouseClick && mouseClick.Pressed)
+		{
+			GD.Print("Player received click");
+		}
+		//end debugging
+
 		if (@event.IsActionPressed("ui_cancel"))
 		{
 			ClearQueue();

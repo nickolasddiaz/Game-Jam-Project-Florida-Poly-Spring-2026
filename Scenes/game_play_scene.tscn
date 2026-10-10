@@ -1,13 +1,11 @@
 [gd_scene format=3 uid="uid://bygh0wno1dfkl"]
 
-
 [ext_resource type="PackedScene" uid="uid://ca03mc2ql7j5k" path="res://Scenes/placement_manager.tscn" id="2_4jtd1"]
 [ext_resource type="PackedScene" uid="uid://dje6pbmde0l6a" path="res://Assets/Characters/Player/player.tscn" id="2_q0gqs"]
 [ext_resource type="PackedScene" uid="uid://dnc6mkarnpawr" path="res://Scenes/Placement Screen/building_ui.tscn" id="3_ftlg0"]
 [ext_resource type="PackedScene" uid="uid://cxd7mr8522w21" path="res://Scenes/CropPlot.tscn" id="4_dli2k"]
 [ext_resource type="PackedScene" uid="uid://b3dlgmb6xebur" path="res://Scenes/Oven.tscn" id="5_n0myt"]
 [ext_resource type="PackedScene" uid="uid://crki5iqnyylt4" path="res://Scenes/Hut.tscn" id="6_nel3d"]
-
 
 [node name="GamePlayScene" type="Node2D" unique_id=370923773]
 texture_filter = 1
@@ -23,7 +21,6 @@ position = Vector2(320, 180)
 position = Vector2(59, 44)
 scale = Vector2(0.931, 0.872)
 
-
 [node name="PlacementManager" parent="." unique_id=993788854 node_paths=PackedStringArray("PlacementUI") instance=ExtResource("2_4jtd1")]
 PlacementUI = NodePath("../BuildingUi")
 
@@ -33,3 +30,5 @@ Crop = ExtResource("4_dli2k")
 Oven = ExtResource("5_n0myt")
 Hut = ExtResource("6_nel3d")
 
+[node name="Area2D" parent="." unique_id=699028693 instance=ExtResource("4_dli2k")]
+position = Vector2(160, 160)

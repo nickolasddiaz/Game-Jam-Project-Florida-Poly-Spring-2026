@@ -47,7 +47,7 @@ public partial class PlacementManager : Node2D
     public void SetPlacementEnabled(bool enabled)
     {
         //THIS IS WHAT PROGRAMMERS WILL USE TO TOGLLE PLACEMENT SYSTEM. placementManager.SetPlacementEnabled(true) editing. or false; gameplay.
-        PlacementEnabled = true;
+        PlacementEnabled = enabled;
 
         if (PlacementUI != null)
         {
