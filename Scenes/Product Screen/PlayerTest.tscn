@@ -1,10 +1,14 @@
 [gd_scene format=3]
 
 [ext_resource type="PackedScene" path="res://Assets/Characters/Player/player.tscn" id="1_player"]
-[ext_resource type="Script" path="res://Scripts/buildings/TestBuilding.cs" id="2_test"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_box"]
-size = Vector2(64, 64)
+[ext_resource type="Script" path="res://Scripts/buildings/TestHud.cs" id="2_hud"]
+[ext_resource type="PackedScene" path="res://Scenes/Product Screen/Buildings/BarleyCrop.tscn" id="3_barley"]
+[ext_resource type="PackedScene" path="res://Scenes/Product Screen/Buildings/CabbageCrop.tscn" id="4_cabbage"]
+[ext_resource type="PackedScene" path="res://Scenes/Product Screen/Buildings/GrapeCrop.tscn" id="5_grape"]
+[ext_resource type="PackedScene" path="res://Scenes/Product Screen/Buildings/SheepPen.tscn" id="6_sheep"]
+[ext_resource type="PackedScene" path="res://Scenes/Product Screen/Buildings/CowPen.tscn" id="7_cow"]
+[ext_resource type="PackedScene" path="res://Scenes/Product Screen/Buildings/BreadOven.tscn" id="8_oven"]
+[ext_resource type="PackedScene" path="res://Scenes/Product Screen/Buildings/Distillery.tscn" id="9_still"]
 
 [node name="PlayerTest" type="Node2D"]
 texture_filter = 1
@@ -13,50 +17,32 @@ texture_filter = 1
 position = Vector2(320, 180)
 zoom = Vector2(1.8, 1.8)
 
+[node name="TestHud" type="CanvasLayer" parent="."]
+script = ExtResource("2_hud")
+
 [node name="Player" parent="." instance=ExtResource("1_player")]
-position = Vector2(320, 180)
+position = Vector2(320, 280)
 
-[node name="BuildingA" type="Area2D" parent="."]
-position = Vector2(120, 100)
-script = ExtResource("2_test")
+[node name="BarleyCrop" parent="." instance=ExtResource("3_barley")]
+position = Vector2(200, 70)
+GrowTime = 5.0
+SoilStrainEnabled = true
+RestTime = 8.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingA"]
-shape = SubResource("RectangleShape2D_box")
+[node name="CabbageCrop" parent="." instance=ExtResource("4_cabbage")]
+position = Vector2(240, 70)
 
-[node name="ColorRect" type="ColorRect" parent="BuildingA"]
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-color = Color(0.8, 0.5, 0.2, 1)
-mouse_filter = 2
+[node name="GrapeCrop" parent="." instance=ExtResource("5_grape")]
+position = Vector2(280, 70)
 
-[node name="BuildingB" type="Area2D" parent="."]
-position = Vector2(520, 100)
-script = ExtResource("2_test")
+[node name="SheepPen" parent="." instance=ExtResource("6_sheep")]
+position = Vector2(200, 150)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingB"]
-shape = SubResource("RectangleShape2D_box")
+[node name="CowPen" parent="." instance=ExtResource("7_cow")]
+position = Vector2(300, 150)
 
-[node name="ColorRect" type="ColorRect" parent="BuildingB"]
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-color = Color(0.3, 0.7, 0.3, 1)
-mouse_filter = 2
+[node name="BreadOven" parent="." instance=ExtResource("8_oven")]
+position = Vector2(400, 150)
 
-[node name="BuildingC" type="Area2D" parent="."]
-position = Vector2(320, 300)
-script = ExtResource("2_test")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingC"]
-shape = SubResource("RectangleShape2D_box")
-
-[node name="ColorRect" type="ColorRect" parent="BuildingC"]
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-color = Color(0.3, 0.5, 0.9, 1)
-mouse_filter = 2
+[node name="Distillery" parent="." instance=ExtResource("9_still")]
+position = Vector2(500, 150)

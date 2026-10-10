@@ -1,0 +1,54 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bfqa2uu8vm3b"]
+
+[ext_resource type="Texture2D" uid="uid://i80t5t4cipmt" path="res://Assets/Buildings/spr_pen_states.png" id="1_sheet"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_COW"]
+atlas = ExtResource("1_sheet")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_EMPTY"]
+atlas = ExtResource("1_sheet")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_SHEEP_NO_WOOL"]
+atlas = ExtResource("1_sheet")
+region = Rect2(192, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_SHEEP_WOOL"]
+atlas = ExtResource("1_sheet")
+region = Rect2(128, 0, 64, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_COW")
+}],
+"loop": 1,
+"name": &"COW",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_EMPTY")
+}],
+"loop": 1,
+"name": &"EMPTY",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_SHEEP_NO_WOOL")
+}],
+"loop": 1,
+"name": &"SHEEP_NO_WOOL",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_SHEEP_WOOL")
+}],
+"loop": 1,
+"name": &"SHEEP_WOOL",
+"speed": 5.0
+}]

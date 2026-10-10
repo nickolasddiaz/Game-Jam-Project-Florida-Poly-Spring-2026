@@ -1,0 +1,138 @@
+[gd_scene format=4 uid="uid://ceb33x4yid3mn"]
+
+[ext_resource type="Script" uid="uid://c8t8a2etdg410" path="res://Scripts/buildings/ProductionBuilding.cs" id="1_prod"]
+[ext_resource type="SpriteFrames" uid="uid://djxktavb45k7s" path="res://Assets/Buildings/Items/ItemFrames.tres" id="2_3ti7f"]
+[ext_resource type="Script" uid="uid://dtsl1coow410u" path="res://Scripts/buildings/ItemSprite.cs" id="2_item"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(64, 32)
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_eu60i"]
+_data = PackedByteArray("AAADAAUAAAABAAAAwAAAAEAAAACOAwAAUklGRoYDAABXRUJQVlA4THoDAAAvv8APEM/ANACANFhyb7zG28ySJfckf7AJACAN/loJTjJQgtI+K7DP/TS2sW0lQiNihopogXJpQyMyZ903IMi2Kejw7vkAADz/2t/y3ffesnQPrvb+1bMbqAHCJ+NQzHtCzSY8J6iFFlANDN7h83U/5hlplcSl6LxLRcNjuLIDbNu2qjbBkLa2OycXbc9O/v9L5RygoCaPEf2H5DaSI0mx9sbqWvuF56sb01RDCKtwD53P3QdOP7X1dNuGnu4u7BBIR3B1dPu6upuiA0lJbBF/AboceA3uoae7ZeSSIKgWW4F7GHq6q9XfhU3LyASGKikyuVEnv+/C2ro/PmrcKzj3T3bfU4ziMuzoR8WyJJgK0sbuU3c3jscGbrERiQ3xGQgRO7v/urt5iv9vFAMPhEgxDUps3f2HRln4MvHBdDgQu+gW+uVaRg1Bd9OdmAykT2D/fkDYR7fgcDiAQV3jKBYObeY+Px6d3V+/X93c7tW8uMaUmC+dFm73ej4/urof58fXb527dVTact8N2qjfr+XkXd3psZ97uTMvSNCYTVq5/dddZ/fjce7nhoEDCQoffNg9tzH6IdpycMTdc5uHDKte2EU44v65HTItZucscQ/d/9wuuQtrU+n/hh1wTy9mTZ77Drhf2+6Xy/2atgAuRcMt7X69v7nuFts5t324+QdtH332At4/98v55PnqxjTVEMLS0N39HDb46qe2oa972F4hkI7g6+re1EeBpKRji/gL1Kf5wuvp3lLkkiColhuGvu5hnS81f8WTqhSokiKTG3Wapo+PhVD8v6Gl268kXUE/2X1PMYrLHDv6UQGczN/NJWlbN47HsnuFiY0gRSA+A/lDTW3dPMX1N4o5eCBEimlQoqLG7j9sJHvwZeKD6XAgyrV3byKhX65l1BC0oubuzQSADKRPYP/+QCjX3r2NBJ/zJxjUNY5iDw6tqN4917o3EualGXSNKTFfeq3C/Pk5V7o3lHlHpS333aTNmj/nWvf6cwdfXoVkzCaV1bvnGvdWgjk4ICKEDz6Ua+/eQCPED9GWOzhiufbu1WcuCfbUiLF4cMSKmrvXnztkWszOWWJNrd1b6J+rqrF7neXXpuL/Hd3dK2ja/NZWk3sr1t/9bry5Xy73a9oCuBQNt7T79V6qh/vNqcWKdXCvPHs5+YuyV5e9wGId3Pvfu/HJEw==")
+size_override = Vector2(192, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ti7f"]
+atlas = SubResource("PortableCompressedTexture2D_eu60i")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c05jr"]
+atlas = SubResource("PortableCompressedTexture2D_eu60i")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jnwd"]
+atlas = SubResource("PortableCompressedTexture2D_eu60i")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tad0q"]
+atlas = SubResource("PortableCompressedTexture2D_eu60i")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27nvb"]
+atlas = SubResource("PortableCompressedTexture2D_eu60i")
+region = Rect2(64, 32, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g3ksi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ti7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c05jr")
+}],
+"loop": 1,
+"name": &"ALE_BREWING",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jnwd")
+}],
+"loop": 1,
+"name": &"EMPTY",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tad0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27nvb")
+}],
+"loop": 1,
+"name": &"WINE_BREWING",
+"speed": 5.0
+}]
+
+[node name="Distillery" type="Area2D" unique_id=1485149644]
+script = ExtResource("1_prod")
+Kind = 6
+Size = Vector2i(2, 1)
+Cost = 3000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1175159806]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="BaseSprite" type="AnimatedSprite2D" parent="." unique_id=1422148844]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_g3ksi")
+animation = &"EMPTY"
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://Assets/Buildings/spr_distillery.aseprite",
+"source_uid": 2497892879089693155
+}
+metadata/_aseprite_wizard_source_file_hash_ = "14e624a4052a54582a907de6b6629d34"
+
+[node name="Feed1" type="AnimatedSprite2D" parent="." unique_id=143722544]
+visible = false
+position = Vector2(-24, -8)
+sprite_frames = ExtResource("2_3ti7f")
+animation = &"ALE"
+script = ExtResource("2_item")
+
+[node name="Feed2" type="AnimatedSprite2D" parent="." unique_id=555643258]
+visible = false
+position = Vector2(-8, -8)
+sprite_frames = ExtResource("2_3ti7f")
+animation = &"ALE"
+script = ExtResource("2_item")
+
+[node name="Feed3" type="AnimatedSprite2D" parent="." unique_id=1853874851]
+visible = false
+position = Vector2(8, -8)
+sprite_frames = ExtResource("2_3ti7f")
+animation = &"ALE"
+script = ExtResource("2_item")
+
+[node name="Product1" type="AnimatedSprite2D" parent="." unique_id=1337765313]
+visible = false
+position = Vector2(-24, 8)
+sprite_frames = ExtResource("2_3ti7f")
+animation = &"ALE"
+script = ExtResource("2_item")
+
+[node name="Product2" type="AnimatedSprite2D" parent="." unique_id=1072898868]
+visible = false
+position = Vector2(-8, 8)
+sprite_frames = ExtResource("2_3ti7f")
+animation = &"ALE"
+script = ExtResource("2_item")
+
+[node name="Product3" type="AnimatedSprite2D" parent="." unique_id=2029920607]
+visible = false
+position = Vector2(8, 8)
+sprite_frames = ExtResource("2_3ti7f")
+animation = &"ALE"
+script = ExtResource("2_item")
