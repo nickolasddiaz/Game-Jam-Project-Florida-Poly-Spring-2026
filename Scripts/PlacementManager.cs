@@ -32,12 +32,21 @@ public partial class PlacementManager : Node2D
     private string buildingnames = "Crop Plot";
         private Vector2I buildingsize = new Vector2I(1, 1);
 
+    //Adding building cost because we are integrating
+    private int buildingcost;
+
+
+
     //So we need a dictionary because we need to know WHAT we are moving IF we are actually going to implement moving/deleting
     private Dictionary<Vector2I, Node2D> occupiedcells = new Dictionary<Vector2I, Node2D>();
 
     public override void _Ready()
     {
+        //fixing the bug where placement doesn't even work.
         GridPlacement = GetNode<TileMapLayer>("GridPlacement");
+
+        //Select nothing becausef or some reason something is selected.
+        MySceneToSpawn = null;
 
         //THIS IS CONTROLLING THE PLACEMENT ENABLING
         SetPlacementEnabled(true);
@@ -60,9 +69,30 @@ public partial class PlacementManager : Node2D
 
     public void SelectBuilding(string buildingname, Vector2I footprint, PackedScene bulidingscene)
     {
+
+        if (bulidingscene == null)
+        {
+            return;
+        }
+        //Reading the size from the
+        Node2D instance = bulidingscene.Instantiate<Node2D>();
+
+        if (instance is not Building building)
+        {
+            instance.Free();
+            return;
+        }
+
+
+        //this was before I added Ms Code, so everything above is working with his building.cs 
+        //changing variables to read placement properties from the building class.
         buildingnames = buildingname;
-        buildingsize = footprint;
+        buildingsize = building.Size;
+        buildingcost = building.Cost;
         MySceneToSpawn = bulidingscene;
+
+        //sinec we just need properties I already have dealings with placing
+        instance.Free();
 
         QueueRedraw();
     }
@@ -117,6 +147,22 @@ public partial class PlacementManager : Node2D
         {
             return;
         }
+
+        if (PlayerData.Instance == null)
+        {
+            return; //because then the game cant run so.
+        }
+
+        //If player can't afford it dont place it.
+        if (PlayerData.Instance.money < buildingcost)
+        { //just debug can make it nice later.
+            GD.Print($"Not enough money. Need {buildingcost}.");
+            return;
+           
+        }
+
+       
+
         //Create the actual building and spawn it at the center of the cells. 2x2 etc. so not like on click.
         Node2D building = MySceneToSpawn.Instantiate<Node2D>();
 
@@ -135,6 +181,10 @@ public partial class PlacementManager : Node2D
             }
         }
         AddChild(building);
+
+        //Reducing money only after the building has been placed.
+        PlayerData.Instance.money -= buildingcost;
+        GD.Print($"Money remaining: {PlayerData.Instance.money}");
 
         QueueRedraw();
         //debugging print we can remove this.
@@ -192,8 +242,8 @@ public partial class PlacementManager : Node2D
 
     public override void _Draw()
     {
-        //more hiding stuff
-        if (!PlacementEnabled) {
+        //more hiding stuff ---and then added || because of the no select bug. Links to unhandled input which should rejectp lacement.
+        if (!PlacementEnabled || MySceneToSpawn == null) {
             return;
         }
 

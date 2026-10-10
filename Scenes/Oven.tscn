@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://b3dlgmb6xebur"]
 
+[ext_resource type="Script" uid="uid://cqxmem5d77hbm" path="res://Scripts/buildings/TestBuilding.cs" id="1_wr84x"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5bbji"]
 size = Vector2(64, 32)
 
@@ -8,6 +10,8 @@ width = 64
 height = 32
 
 [node name="Area2D" type="Area2D" unique_id=699028693]
+script = ExtResource("1_wr84x")
+Size = Vector2i(2, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1400505206]
 position = Vector2(0, 4.7683716e-07)
