@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://tn1ugyflvcsy"]
+
+[ext_resource type="Script" uid="uid://cxvvki4340i4p" path="res://Scenes/Placement Screen/BuildingUiButton.cs" id="1_c5yud"]
+[ext_resource type="Texture2D" uid="uid://46ewnev6ydgf" path="res://Assets/placeholder.png" id="2_s4tsl"]
+
+[node name="building_ui_button" type="Control" unique_id=1382138230]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c5yud")
+
+[node name="Label" type="Label" parent="." unique_id=2014708918]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -43.0
+offset_top = 39.0
+offset_right = 86.0
+offset_bottom = 62.0
+text = "Text"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=1216280930]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 33.0
+offset_bottom = 33.0
+icon = ExtResource("2_s4tsl")

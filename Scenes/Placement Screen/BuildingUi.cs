@@ -1,65 +1,47 @@
 using Godot;
 using System;
 
-public partial class BuildingUi : CanvasLayer
+public partial class BuildingUi : Control
 {
 
-	//So now because for some reason we have a placement manager I need to connect these buttons
+	private GridContainer inventoryContainer;
+	private PackedScene sceneFile;
 
-	[Export]
-	public PlacementManager buttons { get; set; }
-
-	[Export]
-	public PackedScene Crop {  get; set; }
-    [Export]
-    public PackedScene Oven { get; set; }
-    [Export]
-    public PackedScene Hut { get; set; }
+	[Export(PropertyHint.File, "*.tscn")]
+	public string NextPath { get; set; } = string.Empty;
 
 
-
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
+	public override void _Ready()
 	{
-		GetNode<Button>("BuildingScroll/BuildingButtons/Crop").Pressed += OnCropPressed;
+		inventoryContainer = GetNode<GridContainer>("%GridContainer");
+		sceneFile = GD.Load<PackedScene>("res://Scenes/Placement Screen/building_ui_button.tscn");
 
-        GetNode<Button>("BuildingScroll/BuildingButtons/Oven").Pressed += OnOvenPressed;
-
-        GetNode<Button>("BuildingScroll/BuildingButtons/Hut").Pressed += OnHutPressed;
-    }
-
-	//Basically doing the footprinting here.
-	private void OnCropPressed()
-	{
-		SelectBuilding("Crop Plot", new Vector2I(1, 1), Crop);
-	}
-    private void OnOvenPressed()
-    {
-        SelectBuilding("Oven", new Vector2I(2, 1), Oven);
-    }
-    private void OnHutPressed()
-    {
-        SelectBuilding("Hut", new Vector2I(2, 2), Hut);
-    }
-
-	private void SelectBuilding(string buildingname, Vector2I footprint, PackedScene bulidingscene)
-	{
-		if (buttons == null)
+		foreach (Node child in inventoryContainer.GetChildren())
 		{
-			return;
+			child.QueueFree();
 		}
 
-        if (bulidingscene == null)
-        {
-            return;
-        }
+		foreach (var (buildingType, buildPacked) in PlayerData.Instance.Buildings) 
+{
+			// Fetch cost/texture from a lightweight data source instead of instantiating the whole scene tree
+			int cost = buildPacked.Cost; 
+			Texture2D texture = buildPacked.Texture;
 
-        buttons.SelectBuilding(buildingname, footprint, bulidingscene);
+			BuildingUiButton sceneInstance = sceneFile.Instantiate<BuildingUiButton>();
+			sceneInstance.setText($"{cost}\n{buildingType}");
+			sceneInstance.setTexture(texture);
+			inventoryContainer.AddChild(sceneInstance);
+		}
+
+		// var continue_button = GetNode<Button>("%Continue");
+		// continue_button.Pressed += OnButtonPressed;
 
 	}
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
+		private void OnButtonPressed()
 	{
+		ScreenManager.Instance.SwitchScreenPath(NextPath, false);
 	}
+
+
 }

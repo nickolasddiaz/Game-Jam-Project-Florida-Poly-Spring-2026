@@ -1,17 +1,27 @@
 using Godot;
+using System;
 
 // Base class for every building (crops, pens, ovens, distillery...).
 // Needs a CollisionShape2D child so the player can detect clicks on it.
 // The Player handles all clicking and walking; the building only reacts in Interact().
-public abstract partial class Building : Area2D
+
+public abstract partial class Building : Sprite2D
 {
-	// Size in tiles (hut 2x2, animal pen 2x1, crop 1x1...)
-	[Export]
-	public Vector2I Size { get; set; } = new Vector2I(1, 1);
+	// Shared properties that every building MUST define in the Inspector
+	[Export] public int Cost { get; set; } = 100;
+	[Export] public Vector2 Size { get; set; } = new Vector2(1, 1);
+	[Export] public Texture2D pic { get; set; }
 
-	[Export]
-	public int Cost { get; set; } = 100;
+	public abstract void OnInteract();
 
-	// Called when the player arrives at this building
-	public abstract void Interact(Player player);
+	public override void _Ready()
+	{
+		// Shared initialization code can go here
+	}
+
+	public override void _Process(double delta)
+	{
+		// Shared frame processing can go here
+	}
+
 }

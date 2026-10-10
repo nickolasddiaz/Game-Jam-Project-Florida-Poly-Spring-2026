@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bgi634a553oam"]
+
+[ext_resource type="PackedScene" uid="uid://do0y2wwglgffs" path="res://Scenes/Buildings/Building.tscn" id="1_byn86"]
+[ext_resource type="Script" uid="uid://dsj5utlxjsoo7" path="res://Scripts/buildings/SheepPen.cs" id="2_byn86"]
+[ext_resource type="Texture2D" uid="uid://46ewnev6ydgf" path="res://Assets/placeholder.png" id="3_bbepw"]
+
+[node name="Sprite2D" unique_id=1577294057 instance=ExtResource("1_byn86")]
+script = ExtResource("2_byn86")
+Size = Vector2(2, 1)
+pic = ExtResource("3_bbepw")

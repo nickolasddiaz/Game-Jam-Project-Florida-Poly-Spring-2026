@@ -2,34 +2,23 @@
 
 [ext_resource type="Script" uid="uid://dwd4ou55bd1cf" path="res://Scenes/Placement Screen/BuildingUi.cs" id="1_mlrl1"]
 
-[node name="BuildingUi" type="CanvasLayer" unique_id=1396722294]
+[node name="BuildingUi" type="Control" unique_id=2071923931]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_mlrl1")
 
-[node name="BuildingScroll" type="ScrollContainer" parent="." unique_id=166360958]
-anchors_preset = -1
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -72.0
-offset_right = -8.0
-offset_bottom = -8.0
-vertical_scroll_mode = 0
+[node name="ColorRect" type="ColorRect" parent="." unique_id=269500158]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 2.0
+offset_right = 706.0
+offset_bottom = 650.0
+color = Color(0.6681502, 0.4348295, 0.6605938, 1)
 
-[node name="BuildingButtons" type="HBoxContainer" parent="BuildingScroll" unique_id=1956995753]
-layout_mode = 2
-
-[node name="Crop" type="Button" parent="BuildingScroll/BuildingButtons" unique_id=820793196]
-custom_minimum_size = Vector2(96, 48)
-layout_mode = 2
-text = "Crop Plot"
-
-[node name="Oven" type="Button" parent="BuildingScroll/BuildingButtons" unique_id=1745406945]
-custom_minimum_size = Vector2(96, 48)
-layout_mode = 2
-text = "Oven"
-
-[node name="Hut" type="Button" parent="BuildingScroll/BuildingButtons" unique_id=701528535]
-custom_minimum_size = Vector2(96, 48)
-layout_mode = 2
-text = "Hut"
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1461825439]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 481.0
+offset_right = 717.0
+offset_bottom = 648.0
+columns = 2
