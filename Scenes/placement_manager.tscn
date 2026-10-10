@@ -5,11 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://do0y2wwglgffs" path="res://Scenes/Building.tscn" id="2_s7x5t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5bbji"]
-size = Vector2(484, 322)
+size = Vector2(640, 352)
+
+[sub_resource type="TileSet" id="TileSet_a5at1"]
+tile_size = Vector2i(32, 32)
 
 [node name="PlacementManager" type="Node2D" unique_id=1447108591]
 script = ExtResource("1_42yw4")
-GridColor = Color(0.5647059, 0.34509805, 0.93333334, 1)
 MySceneToSpawn = ExtResource("2_s7x5t")
 
 [node name="ValidPlacement" type="Area2D" parent="." unique_id=1558736646]
@@ -17,5 +19,8 @@ unique_name_in_owner = true
 script = ExtResource("2_pler8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ValidPlacement" unique_id=825943291]
-position = Vector2(242, 161)
+position = Vector2(320, 176)
 shape = SubResource("RectangleShape2D_5bbji")
+
+[node name="GridPlacement" type="TileMapLayer" parent="." unique_id=1544473667]
+tile_set = SubResource("TileSet_a5at1")
