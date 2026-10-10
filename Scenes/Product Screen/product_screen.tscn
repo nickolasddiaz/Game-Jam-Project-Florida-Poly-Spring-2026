@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bs5p1r27jbycs"]
+
+[ext_resource type="Script" uid="uid://80o74k067gnt" path="res://Scripts/Product Screen/ProductScreen.cs" id="1_c2put"]
+
+[node name="ProductScreen" type="Control" unique_id=1277831403]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c2put")
+
+[node name="Background" type="ColorRect" parent="." unique_id=248909064]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0000305
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.48000064, 0.1200003)
+color = Color(0.61272573, 0.2701221, 0.19464886, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=815908793]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 7.0
+offset_top = 16.0
+offset_right = 103.0
+offset_bottom = 66.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=370207054]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TimeLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=648942506]
+layout_mode = 2
+text = "Time Left"
+horizontal_alignment = 1
+
+[node name="Time" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=567947294]
+unique_name_in_owner = true
+layout_mode = 2
+text = "5:00"
+horizontal_alignment = 1
