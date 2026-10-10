@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cfqqkc536vx5f"]
+
+[ext_resource type="Script" uid="uid://cfeh76a1r7otl" path="res://Scripts/task_screen/next_task_screen_box.cs" id="1_pwxx1"]
+[ext_resource type="Texture2D" uid="uid://46ewnev6ydgf" path="res://Assets/placeholder.png" id="2_u5mxm"]
+
+[node name="Inventory_box" type="ColorRect" unique_id=1193527169]
+custom_minimum_size = Vector2(128, 128)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.5742299, 0.81976473, 0.61540955, 1)
+script = ExtResource("1_pwxx1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=658678146]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(64, 64)
+scale = Vector2(2, 2)
+texture = ExtResource("2_u5mxm")
+
+[node name="Label" type="Label" parent="." unique_id=2140705785]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -1.0
+offset_top = 101.0
+offset_right = 128.0
+offset_bottom = 124.0
+text = "Placeholder Text"
+horizontal_alignment = 1
