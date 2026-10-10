@@ -1,0 +1,62 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://Assets/Characters/Player/player.tscn" id="1_player"]
+[ext_resource type="Script" path="res://Scripts/buildings/TestBuilding.cs" id="2_test"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_box"]
+size = Vector2(64, 64)
+
+[node name="PlayerTest" type="Node2D"]
+texture_filter = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(320, 180)
+zoom = Vector2(1.8, 1.8)
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector2(320, 180)
+
+[node name="BuildingA" type="Area2D" parent="."]
+position = Vector2(120, 100)
+script = ExtResource("2_test")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingA"]
+shape = SubResource("RectangleShape2D_box")
+
+[node name="ColorRect" type="ColorRect" parent="BuildingA"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.8, 0.5, 0.2, 1)
+mouse_filter = 2
+
+[node name="BuildingB" type="Area2D" parent="."]
+position = Vector2(520, 100)
+script = ExtResource("2_test")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingB"]
+shape = SubResource("RectangleShape2D_box")
+
+[node name="ColorRect" type="ColorRect" parent="BuildingB"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.3, 0.7, 0.3, 1)
+mouse_filter = 2
+
+[node name="BuildingC" type="Area2D" parent="."]
+position = Vector2(320, 300)
+script = ExtResource("2_test")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingC"]
+shape = SubResource("RectangleShape2D_box")
+
+[node name="ColorRect" type="ColorRect" parent="BuildingC"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.3, 0.5, 0.9, 1)
+mouse_filter = 2

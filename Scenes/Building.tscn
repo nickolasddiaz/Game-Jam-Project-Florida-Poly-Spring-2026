@@ -7,10 +7,11 @@ height = 32
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5bbji"]
 size = Vector2(32, 32)
 
-[node name="Sprite2D" type="Sprite2D" unique_id=1577294057]
+[node name="Sprite2D" type="Sprite2D" unique_id=1577294057 groups=["Buildings"]]
+scale = Vector2(2, 2)
 texture = SubResource("NoiseTexture2D_dujfe")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=699028693]
+[node name="Area2D" type="Area2D" parent="." unique_id=699028693 groups=["Buildings"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1400505206]
 position = Vector2(0, 4.7683716e-07)

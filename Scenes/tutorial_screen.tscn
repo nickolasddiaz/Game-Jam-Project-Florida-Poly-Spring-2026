@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y8jer")
-NextPath = "uid://xspc1addycll"
+NextPath = "uid://dnsq4712uoggw"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1389430742]
 layout_mode = 1
