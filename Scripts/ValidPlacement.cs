@@ -25,7 +25,7 @@ public partial class ValidPlacement : Area2D
 	{
 		// Draw vertical lines
 		int cols = Mathf.CeilToInt(RectAreaSize.X / parent.cellSize);
-		for (int x = 0; x <= cols; x++)
+		for (int x = 0; x <= cols - 1; x++)
 		{
 			float posX = x * parent.cellSize;
 			DrawLine(new Vector2(posX, 0), new Vector2(posX, RectAreaSize.Y), parent.GridColor);
@@ -33,7 +33,7 @@ public partial class ValidPlacement : Area2D
 
 		// Draw horizontal lines
 		int rows = Mathf.CeilToInt(RectAreaSize.Y / parent.cellSize);
-		for (int y = 0; y <= rows; y++)
+		for (int y = 0; y <= rows - 1; y++)
 		{
 			float posY = y * parent.cellSize;
 			DrawLine(new Vector2(0, posY), new Vector2(RectAreaSize.X, posY), parent.GridColor);
