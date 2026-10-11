@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://bygh0wno1dfkl"]
 
+[ext_resource type="Script" uid="uid://dacieh3xjdwp2" path="res://Scripts/GamePlayScene.cs" id="1_frxao"]
 [ext_resource type="Texture2D" uid="uid://cc6vd8yan7u4h" path="res://Assets/map.aseprite" id="1_nel3d"]
 [ext_resource type="PackedScene" uid="uid://ca03mc2ql7j5k" path="res://Scenes/placement_manager.tscn" id="2_4jtd1"]
 [ext_resource type="PackedScene" uid="uid://dje6pbmde0l6a" path="res://Assets/Characters/Player/player.tscn" id="2_q0gqs"]
-[ext_resource type="PackedScene" uid="uid://dnc6mkarnpawr" path="res://Scenes/Placement Screen/building_ui.tscn" id="3_ftlg0"]
 [ext_resource type="PackedScene" uid="uid://bs5p1r27jbycs" path="res://Scenes/Product Screen/product_screen.tscn" id="4_ftlg0"]
 
 [node name="GamePlayScene" type="Node2D" unique_id=370923773]
 texture_filter = 1
+script = ExtResource("1_frxao")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1446007332]
 position = Vector2(318, 180)
@@ -21,13 +22,16 @@ texture = ExtResource("1_nel3d")
 position = Vector2(59, 44)
 scale = Vector2(0.931, 0.872)
 
-[node name="PlacementManager" parent="." unique_id=993788854 node_paths=PackedStringArray("PlacementUI") instance=ExtResource("2_4jtd1")]
-PlacementUI = NodePath("../BuildingUi")
-
-[node name="BuildingUi" parent="." unique_id=1396722294 instance=ExtResource("3_ftlg0")]
+[node name="PlacementManager" parent="." unique_id=993788854 instance=ExtResource("2_4jtd1")]
+unique_name_in_owner = true
+position = Vector2(-1, 0)
+scale = Vector2(1, 1.02)
 
 [node name="ProductScreen" parent="." unique_id=1277831403 instance=ExtResource("4_ftlg0")]
-offset_left = 111.0
-offset_top = 13.0
-offset_right = 111.0
-offset_bottom = 13.0
+offset_left = 99.0
+offset_top = -12.0
+offset_right = 99.0
+offset_bottom = -12.0
+
+[node name="BuildingContainer" type="Node2D" parent="." unique_id=1401097745]
+unique_name_in_owner = true

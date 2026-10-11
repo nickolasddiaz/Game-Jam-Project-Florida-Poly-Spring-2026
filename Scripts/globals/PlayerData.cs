@@ -40,7 +40,7 @@ public class BuildingData
 	public int Cost;
 	public Texture2D Texture;
 	public PackedScene BuildingScene;
-	public Vector2 Size;
+	public Vector2I Size;
 	public BuildingData(string Path)
 	{
 		BuildingScene = GD.Load<PackedScene>(Path);
@@ -55,13 +55,15 @@ public class BuildingData
 		}
 		Cost = building.Cost;
 		Texture = building.pic;
-		Size = building.Size;
+		Size = (Vector2I)building.Size;
 		building.Free();
 	}
 }
 
 public partial class PlayerData : Node
 {
+	public PlacementManager placementManager;
+	public Node2D BuildingContainer;
 
 	public Dictionary<BuildingType, BuildingData> Buildings = new()
 	{
@@ -83,6 +85,12 @@ public partial class PlayerData : Node
 	public Godot.Collections.Dictionary<BuildingType, bool> isBuildingUnlockedDict = new Godot.Collections.Dictionary<BuildingType, bool>();
 	public int money = 100000;
 	public int day = 0;
+
+	public bool PlacementEnabled = true;
+	public PackedScene MySceneToSpawn;
+	public int buildingcost = 0;
+
+	public Vector2I buildingsize = new Vector2I(1, 1);
 
 	public List<Day> DayInfo;
 

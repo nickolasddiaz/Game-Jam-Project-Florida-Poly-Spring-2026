@@ -24,7 +24,7 @@ public partial class ValidPlacement : Area2D
 	public override void _Draw()
 	{
 		//hiding when gaming
-		if (!parent.PlacementEnabled)
+		if (!PlayerData.Instance.PlacementEnabled)
 		{
 			return;
 		}

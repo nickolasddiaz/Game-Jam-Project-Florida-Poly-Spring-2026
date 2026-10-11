@@ -30,17 +30,20 @@ public partial class BuildingUi : Control
 			BuildingUiButton sceneInstance = sceneFile.Instantiate<BuildingUiButton>();
 			sceneInstance.setText($"{cost}\n{buildingType}");
 			sceneInstance.setTexture(texture);
+			sceneInstance.setBuildingType(buildingType);
 			inventoryContainer.AddChild(sceneInstance);
 		}
 
-		// var continue_button = GetNode<Button>("%Continue");
-		// continue_button.Pressed += OnButtonPressed;
+		var continue_button = GetNode<Button>("%Continue");
+		continue_button.Pressed += OnButtonPressed;
 
 	}
 
-		private void OnButtonPressed()
+	private void OnButtonPressed()
 	{
-		ScreenManager.Instance.SwitchScreenPath(NextPath, false);
+		PlayerData.Instance.PlacementEnabled = false;
+		PlayerData.Instance.placementManager.ProcessMode = ProcessModeEnum.Disabled;
+		PlayerData.Instance.placementManager.Visible = false;
 	}
 
 

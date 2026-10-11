@@ -9,17 +9,33 @@ public partial class BuildingUiButton : Control
 	private Label productLabel;
 	private string pendingText;
 	private bool hasPendingText;
+    private BuildingType building;
 
-	public override void _Ready()
+    public override void _Ready()
 	{
 		productPic = GetNodeOrNull<Button>("%Button");
 		if (productPic != null && hasPendingTexture)
 			productPic.Icon = pendingTexture;
 
+		productPic.Pressed += onClick;
+
 		productLabel = GetNodeOrNull<Label>("%Label");
 		if (productLabel != null && hasPendingText)
 			productLabel.Text = pendingText;
 
+	}
+
+	public void onClick()
+	{
+		PlayerData.Instance.PlacementEnabled = true;
+		var buildings = PlayerData.Instance.Buildings[building];
+		PlayerData.Instance.buildingcost = buildings.Cost;
+		PlayerData.Instance.MySceneToSpawn = buildings.BuildingScene;
+		PlayerData.Instance.buildingsize = buildings.Size;
+	}
+
+	public void setBuildingType(BuildingType building){
+		this.building = building;
 	}
 
 
