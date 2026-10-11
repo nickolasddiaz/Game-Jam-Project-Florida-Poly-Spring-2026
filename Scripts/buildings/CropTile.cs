@@ -144,6 +144,7 @@ public partial class CropTile : Building
 		if (PlayerData.Instance != null)
 		{
 			PlayerData.Instance.productAmounts[CropType] += amount;
+			PlayerData.Instance.productScreen.updateProductAmounts();
 			GD.Print($"Harvested {amount} {CropType}. Total: {PlayerData.Instance.productAmounts[CropType]}");
 		}
 
