@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cwkefxegcen2r"
+path="res://.godot/imported/spr_placement.aseprite-3f09c750be8e3b6942687d5095361ce6.res"
+
+[deps]
+
+source_file="res://Assets/Placement Icons/spr_placement.aseprite"
+dest_files=["res://.godot/imported/spr_placement.aseprite-3f09c750be8e3b6942687d5095361ce6.res"]
+
+[params]
+
