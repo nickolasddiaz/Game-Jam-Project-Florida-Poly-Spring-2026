@@ -25,6 +25,9 @@ public partial class BuildingUi : Control
 
 		sceneFile = GD.Load<PackedScene>("res://Scenes/Placement Screen/building_ui_button.tscn");
 
+		SpriteFrames icons = GD.Load<SpriteFrames>("res://Assets/Placement Icons/spr_placement.aseprite");
+
+
 		foreach (Node child in inventoryContainer.GetChildren())
 		{
 			child.QueueFree();
@@ -33,10 +36,23 @@ public partial class BuildingUi : Control
 		foreach (var (buildingType, buildPacked) in PlayerData.Instance.Buildings) 
 {
 			// Fetch cost/texture from a lightweight data source instead of instantiating the whole scene tree
-			int cost = buildPacked.Cost; 
-			Texture2D texture = buildPacked.Texture;
+			int cost = buildPacked.Cost;
+            string iconName = buildingType switch
+            {
+                BuildingType.barley_crop => "BARLEY_SEED",
+                BuildingType.cabbage_crop => "CABBAGE_SEED",
+                BuildingType.grape_crop => "GRAPE_SEED",
+                BuildingType.sheep_pen => "SHEEP_PEN",
+                BuildingType.cow_pen => "COW_PEN",
+                BuildingType.bread_oven => "BREAD_OVEN",
+                BuildingType.distillary => "DISTILLERY",
+                _ => "BASE"
+            };
 
-			BuildingUiButton sceneInstance = sceneFile.Instantiate<BuildingUiButton>();
+            Texture2D texture = icons.GetFrameTexture(iconName, 0);
+
+
+            BuildingUiButton sceneInstance = sceneFile.Instantiate<BuildingUiButton>();
 			sceneInstance.setText($"{cost}\n{buildingType}");
 			sceneInstance.setTexture(texture);
 			sceneInstance.setBuildingType(buildingType);
