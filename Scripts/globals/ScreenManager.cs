@@ -4,16 +4,23 @@ using System;
 public partial class ScreenManager : Node
 {
 	public static ScreenManager Instance { get; private set; }
-	private Node _screenContainer;
+	
+	private Node _screenContainer; 
 	private Node _currentScreen;
+
 	public override void _Ready()
 	{
 		Instance = this;
-		_screenContainer = GetTree().CurrentScene;
+		
+		if (_screenContainer == null)
+		{
+			_screenContainer = this;
+		}
+
+		_currentScreen = GetTree().CurrentScene;
 	}
 
-
-	public void SwitchScreen(PackedScene nextScreenPacked, bool deleteOld )
+	public void SwitchScreen(PackedScene nextScreenPacked, bool deleteOld)
 	{
 		if (_currentScreen != null)
 		{
@@ -32,6 +39,7 @@ public partial class ScreenManager : Node
 		}
 
 		_currentScreen = null;
+		
 		if (nextScreenPacked != null)
 		{
 			_currentScreen = nextScreenPacked.Instantiate();
@@ -39,17 +47,16 @@ public partial class ScreenManager : Node
 		}
 	}
 
-	public void SwitchScreenPath(string nextScreenPacked, bool deleteOld )
+	public void SwitchScreenPath(string nextScreenPacked, bool deleteOld)
 	{
 		var scene = GD.Load<PackedScene>(nextScreenPacked);
-        if (scene != null)
-        {
-            SwitchScreen(scene, deleteOld);
-        }
-        else
-        {
-            GD.PrintErr($"Failed to load screen:");
-        }
+		if (scene != null)
+		{
+			SwitchScreen(scene, deleteOld);
+		}
+		else
+		{
+			GD.PrintErr($"Failed to load screen: {nextScreenPacked}");
+		}
 	}
-
 }

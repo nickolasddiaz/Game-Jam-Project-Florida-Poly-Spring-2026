@@ -6,4 +6,5 @@
 
 [node name="Sprite2D" unique_id=1577294057 instance=ExtResource("1_ojojo")]
 script = ExtResource("2_w28ql")
+Size = Vector2(2, 1)
 pic = ExtResource("3_cx8p1")

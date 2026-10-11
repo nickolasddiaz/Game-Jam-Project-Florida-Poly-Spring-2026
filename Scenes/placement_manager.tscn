@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://b5vxbbsp8d5pe" path="res://Scripts/PlacementManager.cs" id="1_42yw4"]
 [ext_resource type="Script" uid="uid://cxqlct5cp8ihd" path="res://Scripts/ValidPlacement.cs" id="2_pler8"]
-[ext_resource type="PackedScene" uid="uid://do0y2wwglgffs" path="res://Scenes/Buildings/Building.tscn" id="2_s7x5t"]
 [ext_resource type="PackedScene" uid="uid://dnc6mkarnpawr" path="res://Scenes/Placement Screen/building_ui.tscn" id="4_2bw8i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5bbji"]
@@ -13,7 +12,6 @@ tile_size = Vector2i(32, 32)
 
 [node name="PlacementManager" type="Node2D" unique_id=1447108591]
 script = ExtResource("1_42yw4")
-MySceneToSpawn = ExtResource("2_s7x5t")
 
 [node name="ValidPlacement" type="Area2D" parent="." unique_id=1558736646]
 unique_name_in_owner = true
@@ -27,7 +25,11 @@ shape = SubResource("RectangleShape2D_5bbji")
 tile_set = SubResource("TileSet_a5at1")
 
 [node name="BuildingUi" parent="." unique_id=2071923931 instance=ExtResource("4_2bw8i")]
-offset_left = 2.0
-offset_right = 2.0
+offset_left = 150.00002
+offset_top = -1.0
+offset_right = 150.00002
+offset_bottom = -1.0
+rotation = -0.00014008417
+scale = Vector2(0.78, 1.04)
 size_flags_horizontal = 3
 size_flags_vertical = 3

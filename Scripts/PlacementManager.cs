@@ -23,7 +23,7 @@ public partial class PlacementManager : Node2D
 
 
 	//this is more toggling for ui and the cyan color.
-	[Export] public CanvasLayer PlacementUI;
+	[Export] public Control PlacementUI;
 
 
 
@@ -35,35 +35,47 @@ public partial class PlacementManager : Node2D
 
 
 
+
 	//So we need a dictionary because we need to know WHAT we are moving IF we are actually going to implement moving/deleting
 	private Dictionary<Vector2I, Node2D> occupiedcells = new Dictionary<Vector2I, Node2D>();
 
 	public override void _Ready()
 	{
-		//fixing the bug where placement doesn't even work.
 		GridPlacement = GetNode<TileMapLayer>("GridPlacement");
-
-		//Select nothing becausef or some reason something is selected.
 		MySceneToSpawn = null;
 
-		//THIS IS CONTROLLING THE PLACEMENT ENABLING
 		SetPlacementEnabled(true);
+		GetNode<Player>("../Player").SetControlEnabled(false);
 	}
 
-	//toggling placement so that whenever we need to..buy mode...and whenever we need too...paly mode.
+	//Temporary switch f4 for testing.
+	public override void _Input(InputEvent @event)
+	{
+		if (@event is InputEventKey key && key.Pressed && !key.Echo && key.Keycode == Key.F4)
+		{
+			SetPlacementEnabled(!PlacementEnabled);
+
+			Player player = GetNode<Player>("../Player");
+			player.SetControlEnabled(!PlacementEnabled);
+
+			GetViewport().SetInputAsHandled();
+		}
+	}
+
 	public void SetPlacementEnabled(bool enabled)
 	{
-		//THIS IS WHAT PROGRAMMERS WILL USE TO TOGLLE PLACEMENT SYSTEM. placementManager.SetPlacementEnabled(true) editing. or false; gameplay.
 		PlacementEnabled = enabled;
 
 		if (PlacementUI != null)
 		{
 			PlacementUI.Visible = enabled;
 		}
-		//Update the preview when it changes
+
 		QueueRedraw();
 		GetNode<Area2D>("%ValidPlacement").QueueRedraw();
 	}
+
+
 
 	public void SelectBuilding(string buildingname, Vector2I footprint, PackedScene bulidingscene)
 	{

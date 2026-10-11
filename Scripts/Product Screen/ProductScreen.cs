@@ -21,6 +21,7 @@ public partial class ProductScreen : Control
 		}
 
 		timeLabel = GetNode<Label>("%Time");
+		PlayerData.Instance.productScreen = this;
 
 		setTimeText("9:99");
 
