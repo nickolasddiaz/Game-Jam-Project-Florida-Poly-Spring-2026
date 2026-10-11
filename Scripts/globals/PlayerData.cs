@@ -84,8 +84,9 @@ public partial class PlayerData : Node
 		var today = DayInfo[day];
 		money += today.numberOfMoneyGiven;
 		time = today.time;
-		isBuildingUnlockedDict[today.unlockable_building] = false;
-		
+		for (int i = 0; i <= day; i++) {
+			isBuildingUnlockedDict[today.unlockable_building] = false;
+		}
 		productScreen.setTimeText(formatTime());
 		productScreen.updateProductAmounts();
 	}
