@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://0ivannxycifr"
+path="res://.godot/imported/spr_caravan.aseprite-becaa682f00d0044b133255c3fbc855c.res"
+
+[deps]
+
+source_file="res://Assets/Characters/Caravan/spr_caravan.aseprite"
+dest_files=["res://.godot/imported/spr_caravan.aseprite-becaa682f00d0044b133255c3fbc855c.res"]
+
+[params]
+

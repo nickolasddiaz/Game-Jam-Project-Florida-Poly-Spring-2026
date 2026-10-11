@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://doekwh0if3ajs"]
+
+[ext_resource type="Script" uid="uid://b0cj1dl435tq3" path="res://Scripts/buildings/CropTile.cs" id="1_crop"]
+[ext_resource type="SpriteFrames" uid="uid://bvxtc7y6jqat8" path="res://Assets/Buildings/CropFrames.tres" id="2_nilpd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(32, 32)
+
+[node name="CabbageCrop" type="Area2D" unique_id=1793446702]
+script = ExtResource("1_crop")
+CropType = 1
+Cost = 150
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1911568825]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="BaseSprite" type="AnimatedSprite2D" parent="." unique_id=1213923209]
+sprite_frames = ExtResource("2_nilpd")
+animation = &"BASE"

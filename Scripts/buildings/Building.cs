@@ -3,16 +3,17 @@ using System;
 
 // Base class for every building (crops, pens, ovens, distillery...).
 // Needs a CollisionShape2D child so the player can detect clicks on it.
-// The Player handles all clicking and walking; the building only reacts in Interact().
-
-public abstract partial class Building : Sprite2D
+public abstract partial class Building : Area2D
 {
 	// Shared properties that every building MUST define in the Inspector
 	[Export] public int Cost { get; set; } = 100;
 	[Export] public Vector2 Size { get; set; } = new Vector2(1, 1);
 	[Export] public Texture2D pic { get; set; }
 
-	public abstract void OnInteract();
+	public virtual void OnInteract()
+	{
+
+	}
 
 	public override void _Ready()
 	{
@@ -24,4 +25,13 @@ public abstract partial class Building : Sprite2D
 		// Shared frame processing can go here
 	}
 
+	public virtual void Interact(Player player)
+	{
+		OnInteract();
+	}
+
+	public virtual void InteractSecondary(Player player)
+	{
+		Interact(player);
+	}
 }
