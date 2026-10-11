@@ -43,6 +43,7 @@ public partial class PlacementManager : Node2D
 	{
 		GridPlacement = GetNode<TileMapLayer>("GridPlacement");
 		PlayerData.Instance.placementManager = this;
+		PlayerData.Instance.BuildingContainer = GetNode<Node2D>("../BuildingContainer");
 		MySceneToSpawn = null;
 
 		SetPlacementEnabled(true);
@@ -187,10 +188,11 @@ public partial class PlacementManager : Node2D
 		//centering
 		Vector2I cencell = clickedCell + buildingsize - new Vector2I(1, 1);
 
-		building.Position = (GetCellCenter(clickedCell) + GetCellCenter(cencell)) / 2f;
+        Vector2 buildingPosition = ToGlobal( (GetCellCenter(clickedCell) + GetCellCenter(cencell)) / 2f
+);
 
-		//Basically putting it down/making sure that the cell is actually recorded and saved.
-		for (int x = 0; x < buildingsize.X; x++)
+        //Basically putting it down/making sure that the cell is actually recorded and saved.
+        for (int x = 0; x < buildingsize.X; x++)
 		{
 			for (int y = 0; y < buildingsize.Y; y++)
 			{
@@ -198,7 +200,8 @@ public partial class PlacementManager : Node2D
 				occupiedcells.Add(cell, building);
 			}
 		}
-		AddChild(building);
+		PlayerData.Instance.BuildingContainer.AddChild(building);
+		building.GlobalPosition = buildingPosition; 
 
 		//Reducing money only after the building has been placed.
 		PlayerData.Instance.money -= buildingcost;

@@ -45,3 +45,5 @@ offset_bottom = -9.0
 grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(0.73824155, 0.80905193)
+
+[node name="BuildingContainer" type="Node2D" parent="." unique_id=331962643]
