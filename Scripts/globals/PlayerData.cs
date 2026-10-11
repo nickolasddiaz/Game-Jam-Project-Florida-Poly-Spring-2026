@@ -64,7 +64,6 @@ public partial class PlayerData : Node
 {
 	public PlacementManager placementManager;
 	public Node2D BuildingContainer;
-
 	public Dictionary<BuildingType, BuildingData> Buildings = new()
 	{
 		{ BuildingType.barley_crop, new BuildingData("res://Scenes/Buildings/Barley_Crop.tscn") },
@@ -77,10 +76,53 @@ public partial class PlayerData : Node
 		{ BuildingType.hut, new BuildingData("res://Scenes/Buildings/Hut.tscn") },
 	};
 
+	public void newDay()
+	{
+		var today = DayInfo[day];
+		money += today.numberOfMoneyGiven;
+		time = today.time;
+		isBuildingUnlockedDict[today.unlockable_building] = true;
+		productAmounts = today.productNeeds.Duplicate();
+		productScreen.setTimeText(formatTime());
+	}
+
+	public void placementToGameplayTransition()
+	{
+		PlacementEnabled = false;
+		placementManager.ProcessMode = ProcessModeEnum.Disabled;
+		placementManager.Visible = false;
+		startTimer = true;
+	}
+
+	public void gameplayToEndofDay()
+	{
+		PlacementEnabled = true;
+		placementManager.ProcessMode = ProcessModeEnum.Inherit;
+		placementManager.Visible = true;
+		startTimer = false;
+		var endDayPath = "res://Scenes/end_of_day_screen.tscn";
+		ScreenManager.Instance.SwitchScreenPath(endDayPath, false);
+	}
+
 	public static PlayerData Instance { get; private set; } // setting PlayerData static
 
-	// look at NextTaskScreen to know how to loop through this
-	public Godot.Collections.Dictionary<ProductType, int> productAmounts = new Godot.Collections.Dictionary<ProductType, int>();
+	public ProductScreen productScreen;
+
+    public float time = 4; // seconds
+
+	public bool startTimer = false;
+
+	public string formatTime()
+	{
+		TimeSpan elapsedTime = TimeSpan.FromSeconds(time);
+
+        // Format as minute:second
+        string formattedTime = string.Format("{0:D2}:{1:D2}", (int)elapsedTime.TotalMinutes, elapsedTime.Seconds);
+		return formattedTime;
+	}
+
+    // look at NextTaskScreen to know how to loop through this
+    public Godot.Collections.Dictionary<ProductType, int> productAmounts = new Godot.Collections.Dictionary<ProductType, int>();
 
 	public Godot.Collections.Dictionary<BuildingType, bool> isBuildingUnlockedDict = new Godot.Collections.Dictionary<BuildingType, bool>();
 	public int money = 100000;
@@ -234,5 +276,16 @@ public partial class PlayerData : Node
 
 	public override void _Process(double delta)
 	{
+
+		if (startTimer)
+		{
+			time -= (float)delta;
+			productScreen.setTimeText(formatTime());
+			if (time <= 0.0f)
+			{
+				startTimer = false;
+				gameplayToEndofDay();
+			}
+        }
 	}
 }

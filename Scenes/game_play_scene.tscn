@@ -28,10 +28,16 @@ position = Vector2(-1, 0)
 scale = Vector2(1, 1.02)
 
 [node name="ProductScreen" parent="." unique_id=1277831403 instance=ExtResource("4_ftlg0")]
-offset_left = 99.0
-offset_top = -12.0
-offset_right = 99.0
-offset_bottom = -12.0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 84.99999
+offset_top = -9.0
+offset_right = 84.99999
+offset_bottom = -9.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.73824155, 0.80905193)
 
 [node name="BuildingContainer" type="Node2D" parent="." unique_id=1401097745]
 unique_name_in_owner = true
