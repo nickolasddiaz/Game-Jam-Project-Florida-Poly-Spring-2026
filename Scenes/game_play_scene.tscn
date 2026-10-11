@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://ca03mc2ql7j5k" path="res://Scenes/placement_manager.tscn" id="2_4jtd1"]
 [ext_resource type="PackedScene" uid="uid://dje6pbmde0l6a" path="res://Assets/Characters/Player/player.tscn" id="2_q0gqs"]
-[ext_resource type="PackedScene" uid="uid://dnc6mkarnpawr" path="res://Scenes/Placement Screen/building_ui.tscn" id="3_ftlg0"]
 [ext_resource type="PackedScene" uid="uid://bs5p1r27jbycs" path="res://Scenes/Product Screen/product_screen.tscn" id="4_ftlg0"]
 
 [node name="GamePlayScene" type="Node2D" unique_id=370923773]
@@ -19,8 +18,7 @@ position = Vector2(320, 180)
 position = Vector2(59, 44)
 scale = Vector2(0.931, 0.872)
 
-[node name="PlacementManager" parent="." unique_id=993788854 node_paths=PackedStringArray("PlacementUI") instance=ExtResource("2_4jtd1")]
-PlacementUI = NodePath("../BuildingUi")
+[node name="PlacementManager" parent="." unique_id=993788854 instance=ExtResource("2_4jtd1")]
 
 [node name="ProductScreen" parent="." unique_id=1277831403 instance=ExtResource("4_ftlg0")]
 anchors_preset = 0
@@ -33,9 +31,3 @@ offset_bottom = -9.0
 grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(0.73824155, 0.80905193)
-
-[node name="ProductScreen" parent="." unique_id=1277831403 instance=ExtResource("4_ftlg0")]
-offset_left = 111.0
-offset_top = 13.0
-offset_right = 111.0
-offset_bottom = 13.0
