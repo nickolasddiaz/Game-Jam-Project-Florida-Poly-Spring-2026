@@ -5,6 +5,10 @@
 [node name="BuildingUi" type="Control" unique_id=2071923931]
 layout_mode = 3
 anchors_preset = 0
+offset_left = 42.0
+offset_top = -2.0
+offset_right = 42.0
+offset_bottom = -2.0
 script = ExtResource("1_mlrl1")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=269500158]
@@ -26,3 +30,12 @@ offset_right = 727.0
 offset_bottom = 764.0
 scale = Vector2(1.0456212, 0.64774823)
 columns = 2
+
+[node name="Continue" type="Button" parent="." unique_id=1540257885]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 508.0
+offset_top = 299.0
+offset_right = 587.0
+offset_bottom = 330.0
+text = "Continue"
