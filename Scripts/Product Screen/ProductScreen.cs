@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 public partial class ProductScreen : Control
@@ -6,6 +7,7 @@ public partial class ProductScreen : Control
 	private HBoxContainer hBoxContainer;
 	private PackedScene sceneFile;
 	private Label timeLabel;
+	private readonly Dictionary<ProductType, ProductItem> productItems = new();
 
 	public override void _Ready()
 	{
@@ -17,6 +19,7 @@ public partial class ProductScreen : Control
 			ProductItem sceneInstance = (ProductItem)sceneFile.Instantiate();
 			sceneInstance.setTexture(texture);
 			sceneInstance.setText(PlayerData.Instance.productAmounts[product].ToString());
+			productItems[product] = sceneInstance;
 			hBoxContainer.AddChild(sceneInstance);
 		}
 
@@ -24,7 +27,14 @@ public partial class ProductScreen : Control
 		PlayerData.Instance.productScreen = this;
 
 		setTimeText("9:99");
+	}
 
+	public void updateProductAmounts()
+	{
+		foreach (var (product, sceneInstance) in productItems)
+		{
+			sceneInstance.setText(PlayerData.Instance.productAmounts[product].ToString());
+		}
 	}
 
 	public void setTimeText(string text)

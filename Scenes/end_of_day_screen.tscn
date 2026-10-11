@@ -23,15 +23,17 @@ grow_vertical = 2
 color = Color(0.61180323, 0.762278, 0.95955426, 1)
 
 [node name="Title" type="Label" parent="." unique_id=821379059]
+unique_name_in_owner = true
 layout_mode = 0
-offset_left = 533.0
-offset_top = 74.0
-offset_right = 616.0
-offset_bottom = 97.0
-text = "Story Intro"
+offset_left = 473.0
+offset_top = 79.0
+offset_right = 667.0
+offset_bottom = 102.0
+text = "Placehlder for end of day"
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="." unique_id=1818520378]
+unique_name_in_owner = true
 custom_maximum_size = Vector2(255, -1)
 layout_mode = 0
 offset_left = 438.0
