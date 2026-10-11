@@ -2,7 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://ca03mc2ql7j5k" path="res://Scenes/placement_manager.tscn" id="2_4jtd1"]
 [ext_resource type="PackedScene" uid="uid://dje6pbmde0l6a" path="res://Assets/Characters/Player/player.tscn" id="2_q0gqs"]
+[ext_resource type="AudioStream" uid="uid://cfwx1ntea5cbt" path="res://Audio/select_001.ogg" id="3_dli2k"]
 [ext_resource type="PackedScene" uid="uid://bs5p1r27jbycs" path="res://Scenes/Product Screen/product_screen.tscn" id="4_ftlg0"]
+[ext_resource type="AudioStream" uid="uid://y5orfuiiq64g" path="res://Audio/click_001.ogg" id="4_n0myt"]
+[ext_resource type="AudioStream" uid="uid://bpal6st47r316" path="res://Audio/error_006.ogg" id="5_nel3d"]
 
 [node name="GamePlayScene" type="Node2D" unique_id=370923773]
 texture_filter = 1
@@ -19,6 +22,17 @@ position = Vector2(59, 44)
 scale = Vector2(0.931, 0.872)
 
 [node name="PlacementManager" parent="." unique_id=993788854 instance=ExtResource("2_4jtd1")]
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="PlacementManager" unique_id=1842567980]
+stream = ExtResource("3_dli2k")
+volume_db = -1.0
+
+[node name="PlaceSound" type="AudioStreamPlayer" parent="PlacementManager" unique_id=859385608]
+stream = ExtResource("4_n0myt")
+
+[node name="ErrorSound" type="AudioStreamPlayer" parent="PlacementManager" unique_id=1399253562]
+stream = ExtResource("5_nel3d")
+volume_db = -1.0
 
 [node name="ProductScreen" parent="." unique_id=1277831403 instance=ExtResource("4_ftlg0")]
 anchors_preset = 0

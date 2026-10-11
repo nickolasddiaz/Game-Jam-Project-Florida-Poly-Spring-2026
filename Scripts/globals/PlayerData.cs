@@ -153,7 +153,18 @@ public partial class PlayerData : Node
 	public override void _Ready()
 	{
 		Instance = this; // setting PlayerData static
-		foreach (ProductType state in Enum.GetValues<ProductType>())
+        SpriteFrames itemIcons = GD.Load<SpriteFrames>(
+    "res://Assets/Buildings/Items/ItemFrames.tres"
+);
+
+        ProductIcons[ProductType.barley] = itemIcons.GetFrameTexture("BARLEY", 0);
+        ProductIcons[ProductType.grape] = itemIcons.GetFrameTexture("GRAPES", 0);
+        ProductIcons[ProductType.wool] = itemIcons.GetFrameTexture("WOOl", 0);
+        ProductIcons[ProductType.milk] = itemIcons.GetFrameTexture("MILK", 0);
+        ProductIcons[ProductType.bread] = itemIcons.GetFrameTexture("BREAD", 0);
+        ProductIcons[ProductType.wine] = itemIcons.GetFrameTexture("WINE", 0);
+        ProductIcons[ProductType.ale] = itemIcons.GetFrameTexture("ALE", 0);
+        foreach (ProductType state in Enum.GetValues<ProductType>())
 		{
 			productAmounts[state] = 0;
 		}

@@ -101,6 +101,7 @@ public partial class PlacementManager : Node2D
 		buildingsize = (Vector2I)building.Size;
 		buildingcost = building.Cost;
 		MySceneToSpawn = bulidingscene;
+		GetNode<AudioStreamPlayer>("SelectSound").Play();
 
 		//sinec we just need properties I already have dealings with placing
 		instance.Free();
@@ -146,6 +147,10 @@ public partial class PlacementManager : Node2D
 		//Says no to any clicks outside and modified to include occupancy for multiple slots.
 		if (!CanPlaceBuilding(clickedCell))
 		{
+			if (MySceneToSpawn != null)
+			{
+				GetNode<AudioStreamPlayer>("ErrorSound").Play();
+			}
 			return;
 		}
 		//Probably not necessary but making sure we assign as cene.
@@ -167,6 +172,8 @@ public partial class PlacementManager : Node2D
 		//If player can't afford it dont place it.
 		if (PlayerData.Instance.money < buildingcost)
 		{ //just debug can make it nice later.
+
+			GetNode<AudioStreamPlayer>("ErrorSound").Play();
 			GD.Print($"Not enough money. Need {buildingcost}.");
 			return;
 		   
@@ -195,6 +202,7 @@ public partial class PlacementManager : Node2D
 
 		//Reducing money only after the building has been placed.
 		PlayerData.Instance.money -= buildingcost;
+		GetNode<AudioStreamPlayer>("PlaceSound").Play();
 		GD.Print($"Money remaining: {PlayerData.Instance.money}");
 
 		QueueRedraw();
