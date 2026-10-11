@@ -144,6 +144,7 @@ public partial class Player : CharacterBody2D
 				Vector2 toTarget = destination - GlobalPosition;
 				float arrive = Mathf.Max(ArriveDistance, Speed * (float)delta);
 
+
 				if (toTarget.Length() <= arrive)
 				{
 					Stop arrived = _target;
@@ -165,6 +166,7 @@ public partial class Player : CharacterBody2D
 				{
 					direction = toTarget.Normalized();
 				}
+
 			}
 		}
 

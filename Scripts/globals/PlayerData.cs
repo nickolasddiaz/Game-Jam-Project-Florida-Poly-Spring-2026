@@ -13,7 +13,8 @@ public enum BuildingType
 {
 	barley_crop, cabbage_crop, grape_crop, 
 	sheep_pen, cow_pen, 
-	bread_oven, distillary
+	bread_oven, distillary,
+	hut
 }
 
 
@@ -25,38 +26,79 @@ public class Day
 	public float time;
 	public int numberOfMoneyGiven;
 	public Day(BuildingType unlockable_building, Godot.Collections.Dictionary<ProductType, int> productNeeds, float time, int numberOfMoneyGiven)
-    {
-        this.unlockable_building = unlockable_building;
-        this.productNeeds = productNeeds;
+	{
+		this.unlockable_building = unlockable_building;
+		this.productNeeds = productNeeds;
 		this.time = time;
 		this.numberOfMoneyGiven = numberOfMoneyGiven;
-    }
+	}
+}
+
+
+public class BuildingData
+{
+	public int Cost;
+	public Texture2D Texture;
+	public PackedScene BuildingScene;
+	public Vector2 Size;
+	public BuildingData(string Path)
+	{
+		BuildingScene = GD.Load<PackedScene>(Path);
+		
+		var instance = BuildingScene.Instantiate();
+		if (instance is not Building building)
+		{
+			GD.PushError($"Scene root must inherit Building: {Path}");
+			instance?.Free();
+			return;
+
+		}
+		Cost = building.Cost;
+		Texture = building.pic;
+		Size = building.Size;
+		building.Free();
+	}
 }
 
 public partial class PlayerData : Node
 {
+
+	public Dictionary<BuildingType, BuildingData> Buildings = new()
+	{
+		{ BuildingType.barley_crop, new BuildingData("res://Scenes/Buildings/Barley_Crop.tscn") },
+		{ BuildingType.cabbage_crop, new BuildingData("res://Scenes/Buildings/Cabbage_Crop.tscn") },
+		{ BuildingType.grape_crop, new BuildingData("res://Scenes/Buildings/Grape_Crop.tscn") },
+		{ BuildingType.sheep_pen, new BuildingData("res://Scenes/Buildings/Sheep_Pen.tscn") },
+		{ BuildingType.cow_pen, new BuildingData("res://Scenes/Buildings/Cow_Pen.tscn") },
+		{ BuildingType.bread_oven, new BuildingData("res://Scenes/Buildings/Bread_Oven.tscn") },
+		{ BuildingType.distillary, new BuildingData("res://Scenes/Buildings/Distillery.tscn") },
+		{ BuildingType.hut, new BuildingData("res://Scenes/Buildings/Hut.tscn") },
+	};
+
 	public static PlayerData Instance { get; private set; } // setting PlayerData static
 
 	// look at NextTaskScreen to know how to loop through this
 	public Godot.Collections.Dictionary<ProductType, int> productAmounts = new Godot.Collections.Dictionary<ProductType, int>();
 
 	public Godot.Collections.Dictionary<BuildingType, bool> isBuildingUnlockedDict = new Godot.Collections.Dictionary<BuildingType, bool>();
+
 	public int money = 5000;
+
 	public int day = 0;
 
 	public List<Day> DayInfo;
 
 	public Godot.Collections.Dictionary<ProductType, Texture2D> ProductIcons = new()
-    {
-        { ProductType.barley, GD.Load<Texture2D>("res://Assets/placeholder.png") },
-        { ProductType.cabbage, GD.Load<Texture2D>("res://Assets/placeholder.png") },
+	{
+		{ ProductType.barley, GD.Load<Texture2D>("res://Assets/placeholder.png") },
+		{ ProductType.cabbage, GD.Load<Texture2D>("res://Assets/placeholder.png") },
 		{ ProductType.grape, GD.Load<Texture2D>("res://Assets/placeholder.png") },
 		{ ProductType.wool, GD.Load<Texture2D>("res://Assets/placeholder.png") },
 		{ ProductType.milk, GD.Load<Texture2D>("res://Assets/placeholder.png") },
 		{ ProductType.bread, GD.Load<Texture2D>("res://Assets/placeholder.png") },
 		{ ProductType.wine, GD.Load<Texture2D>("res://Assets/placeholder.png") },
 		{ ProductType.ale, GD.Load<Texture2D>("res://Assets/placeholder.png") },
-    };
+	};
 
 	public override void _Ready()
 	{

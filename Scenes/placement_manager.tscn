@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b5vxbbsp8d5pe" path="res://Scripts/PlacementManager.cs" id="1_42yw4"]
 [ext_resource type="Script" uid="uid://cxqlct5cp8ihd" path="res://Scripts/ValidPlacement.cs" id="2_pler8"]
-[ext_resource type="PackedScene" uid="uid://do0y2wwglgffs" path="res://Scenes/Building.tscn" id="2_s7x5t"]
+[ext_resource type="PackedScene" uid="uid://do0y2wwglgffs" path="res://Scenes/Buildings/Building.tscn" id="2_s7x5t"]
+[ext_resource type="PackedScene" uid="uid://dnc6mkarnpawr" path="res://Scenes/Placement Screen/building_ui.tscn" id="4_2bw8i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5bbji"]
 size = Vector2(640, 352)
@@ -24,3 +25,9 @@ shape = SubResource("RectangleShape2D_5bbji")
 
 [node name="GridPlacement" type="TileMapLayer" parent="." unique_id=1544473667]
 tile_set = SubResource("TileSet_a5at1")
+
+[node name="BuildingUi" parent="." unique_id=2071923931 instance=ExtResource("4_2bw8i")]
+offset_left = 2.0
+offset_right = 2.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

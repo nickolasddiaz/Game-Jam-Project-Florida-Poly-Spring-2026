@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://csdjabbrrrx0d"]
+
+[ext_resource type="PackedScene" uid="uid://do0y2wwglgffs" path="res://Scenes/Buildings/Building.tscn" id="1_ojojo"]
+[ext_resource type="Script" uid="uid://bh7dvg8xn1dpu" path="res://Scripts/buildings/Distillery.cs" id="2_w28ql"]
+[ext_resource type="Texture2D" uid="uid://46ewnev6ydgf" path="res://Assets/placeholder.png" id="3_cx8p1"]
+
+[node name="Sprite2D" unique_id=1577294057 instance=ExtResource("1_ojojo")]
+script = ExtResource("2_w28ql")
+pic = ExtResource("3_cx8p1")
