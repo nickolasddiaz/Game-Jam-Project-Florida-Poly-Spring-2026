@@ -40,6 +40,7 @@ public class BuildingData
 	public int Cost;
 	public Texture2D Texture;
 	public PackedScene BuildingScene;
+
 	public Vector2I Size;
 	public BuildingData(string Path)
 	{
@@ -64,6 +65,8 @@ public partial class PlayerData : Node
 {
 	public PlacementManager placementManager;
 	public Node2D BuildingContainer;
+	public EndOfDayScreen endOfDayScreen;
+
 	public Dictionary<BuildingType, BuildingData> Buildings = new()
 	{
 		{ BuildingType.barley_crop, new BuildingData("res://Scenes/Buildings/Barley_Crop.tscn") },
@@ -84,6 +87,7 @@ public partial class PlayerData : Node
 		isBuildingUnlockedDict[today.unlockable_building] = true;
 		productAmounts = today.productNeeds.Duplicate();
 		productScreen.setTimeText(formatTime());
+		productScreen.updateProductAmounts();
 	}
 
 	public void placementToGameplayTransition()
@@ -102,6 +106,7 @@ public partial class PlayerData : Node
 		startTimer = false;
 		var endDayPath = "res://Scenes/end_of_day_screen.tscn";
 		ScreenManager.Instance.SwitchScreenPath(endDayPath, false);
+		endOfDayScreen.updateEndofDay();
 	}
 
 	public static PlayerData Instance { get; private set; } // setting PlayerData static
@@ -135,6 +140,8 @@ public partial class PlayerData : Node
 	public Vector2I buildingsize = new Vector2I(1, 1);
 
 	public List<Day> DayInfo;
+	public int lastDay = 6;
+
 
 	public Godot.Collections.Dictionary<ProductType, Texture2D> ProductIcons = new()
 	{
@@ -160,7 +167,6 @@ public partial class PlayerData : Node
 		{
 			isBuildingUnlockedDict[state] = false;
 		}
-
 
 		DayInfo = new List<Day> // 0-indexed
 			{
