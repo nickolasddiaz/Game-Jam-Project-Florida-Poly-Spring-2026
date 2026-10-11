@@ -10,7 +10,6 @@ size = Vector2(64, 32)
 
 [node name="SheepPen" type="Area2D" unique_id=1655805192]
 script = ExtResource("1_prod")
-Size = Vector2i(2, 1)
 Cost = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1322798570]

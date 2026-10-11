@@ -76,7 +76,7 @@ public partial class PlayerData : Node
     { BuildingType.cow_pen, new BuildingData("res://Scenes/Product Screen/Buildings/CowPen.tscn") },
     { BuildingType.bread_oven, new BuildingData("res://Scenes/Product Screen/Buildings/BreadOven.tscn") },
     { BuildingType.distillary, new BuildingData("res://Scenes/Product Screen/Buildings/Distillery.tscn") },
-    { BuildingType.hut, new BuildingData("res://Scenes/Buildings/Hut.tscn") },
+    
 };
 
     public void newDay()

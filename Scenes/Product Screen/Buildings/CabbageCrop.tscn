@@ -9,6 +9,7 @@ size = Vector2(32, 32)
 [node name="CabbageCrop" type="Area2D" unique_id=1793446702]
 script = ExtResource("1_crop")
 CropType = 1
+SoilStrainEnabled = true
 Cost = 150
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1911568825]
