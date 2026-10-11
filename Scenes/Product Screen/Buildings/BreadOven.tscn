@@ -1,0 +1,133 @@
+[gd_scene format=4 uid="uid://ba857uvfx228s"]
+
+[ext_resource type="Script" uid="uid://c8t8a2etdg410" path="res://Scripts/buildings/ProductionBuilding.cs" id="1_prod"]
+[ext_resource type="SpriteFrames" uid="uid://djxktavb45k7s" path="res://Assets/Buildings/Items/ItemFrames.tres" id="2_0s83u"]
+[ext_resource type="Script" uid="uid://dtsl1coow410u" path="res://Scripts/buildings/ItemSprite.cs" id="2_item"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(64, 32)
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_f0o1p"]
+_data = PackedByteArray("AAADAAUAAAABAAAAwAAAAEAAAABkAwAAUklGRlwDAABXRUJQVlA4TE8DAAAvv8APEL/ANgCAJHTD1FirV/j/PThSb7CNbSsR7mQMKRRg5dEd5dhmmzrTAADS4C5NMolL+P8HHnDSZP7jiaVzBgTY/oBNPuL/UUJ1ezU2pMrVEPnDWyOBP7UeYMnHfz3m2bWL0K35ZFY8M3v1pgCybdsK2uqWmMbYcyCFZO/+/6eaAwoouY8R/Xfgto0jSbt7/aJtn/j7bKpx3N2q8CCgOuZuVXoIvBCiOuBuFZACCgkSOtxuN4XgxQd6EQFIHVa37tVFCBAIiicliO52AN2/RVVpdTGSIl5IIYkAmCQlt0oH1j0FLx4CgG9H2V26bC4P8SICoWBFiPxKGVz3Yp1dvEiQf5kgILpktux+pqexX/ftbbrdWnfPqy7GCOQEEqFL9zMlQ79u805Kt7bds9E94uQLICCwS3dK7yU9+3XfkrVp95xxiY/oCwABXbrT65WeKaV+3bf0Smt7n+5pujwkx5OBXbpX3jueenZbe3TPLn45LQpdBts9O6cbLqPsLoajqC7D7F7NMWaHf6jdxfTvq3VZlmF2t3Fw3bRWDRhO94aN2HAA3dcNdZ+VpcPpBgAAVQNG1x0tNQPG121cse4aMJzuD/R2/aU/uu6Imkt/jN35pV4z4OzdH+jtv8+mGvt3n/kZPAio9u8+6zN6CLwQotq/+4yrgBRQSJDQ/t2nw00hePGBXkQAUrt3H3fRvboIAQJB8aQE0d327z4Av0VVaXUxkiJeSCGJAJgkJXWrtHv3gZmCFw8BwLcVNOs+C6XL7vIQLyIQClaE0MxNOnQfnMU6u3iRID+ZICC6ZG5R131/m+73re7jM6+6GCOQE0iE3dR1m3XFdJ+G2egecfKWtG4CAndT1W15pbvpPgtzxiU+on8/S6/0AyBgN3XdZn29kuk+G9N0eUhKyey3Jys2dd33NbvQfTJmF7+cFoUue2nZfTJm53TDZTcNu89CccdRVJf9tOs+Das5xuz01dCq+1QUd/37al2WpYJm3aehjVv06D44tFYN2KRD9/Eo24gtu3cfgOuG2sTrhv27DwcAAKgasEmH7qMTLTUDtmnffXyMK9ZdAzbp3/0f8rYCAPYP2PF28+4zvF1z6+ykafdJiFW3TIxxx9vNu/8/3v4DAA==")
+size_override = Vector2(192, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0s83u"]
+atlas = SubResource("PortableCompressedTexture2D_f0o1p")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mu033"]
+atlas = SubResource("PortableCompressedTexture2D_f0o1p")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4c41l"]
+atlas = SubResource("PortableCompressedTexture2D_f0o1p")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omv6i"]
+atlas = SubResource("PortableCompressedTexture2D_f0o1p")
+region = Rect2(64, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eja2g"]
+atlas = SubResource("PortableCompressedTexture2D_f0o1p")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ukhjt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0s83u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mu033")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4c41l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omv6i")
+}],
+"loop": 1,
+"name": &"BAKING",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eja2g")
+}],
+"loop": 1,
+"name": &"EMPTY",
+"speed": 10.0
+}]
+
+[node name="BreadOven" type="Area2D" unique_id=1638577230]
+script = ExtResource("1_prod")
+Kind = 5
+Size = Vector2i(2, 1)
+Cost = 2000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1222654667]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="BaseSprite" type="AnimatedSprite2D" parent="." unique_id=659337580]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_ukhjt")
+animation = &"EMPTY"
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://Assets/Buildings/spr_breadOven.aseprite",
+"source_uid": 1163675283462762298
+}
+metadata/_aseprite_wizard_source_file_hash_ = "d7ecf0075084157470492e4144439168"
+
+[node name="Feed1" type="AnimatedSprite2D" parent="." unique_id=239319475]
+visible = false
+position = Vector2(-24, -8)
+sprite_frames = ExtResource("2_0s83u")
+animation = &"BARLEY"
+script = ExtResource("2_item")
+
+[node name="Feed2" type="AnimatedSprite2D" parent="." unique_id=1317080759]
+visible = false
+position = Vector2(-8, -8)
+sprite_frames = ExtResource("2_0s83u")
+animation = &"BARLEY"
+script = ExtResource("2_item")
+
+[node name="Feed3" type="AnimatedSprite2D" parent="." unique_id=169385310]
+visible = false
+position = Vector2(8, -8)
+sprite_frames = ExtResource("2_0s83u")
+animation = &"BREAD"
+script = ExtResource("2_item")
+
+[node name="Product1" type="AnimatedSprite2D" parent="." unique_id=1507158015]
+visible = false
+position = Vector2(-24, 8)
+sprite_frames = ExtResource("2_0s83u")
+animation = &"BREAD"
+script = ExtResource("2_item")
+
+[node name="Product2" type="AnimatedSprite2D" parent="." unique_id=533813030]
+visible = false
+position = Vector2(-8, 8)
+sprite_frames = ExtResource("2_0s83u")
+animation = &"BREAD"
+script = ExtResource("2_item")
+
+[node name="Product3" type="AnimatedSprite2D" parent="." unique_id=545199045]
+visible = false
+position = Vector2(8, 8)
+sprite_frames = ExtResource("2_0s83u")
+animation = &"BREAD"
+script = ExtResource("2_item")

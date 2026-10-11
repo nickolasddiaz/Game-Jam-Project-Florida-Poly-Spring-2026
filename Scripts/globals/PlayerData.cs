@@ -130,7 +130,9 @@ public partial class PlayerData : Node
     public Godot.Collections.Dictionary<ProductType, int> productAmounts = new Godot.Collections.Dictionary<ProductType, int>();
 
 	public Godot.Collections.Dictionary<BuildingType, bool> isBuildingUnlockedDict = new Godot.Collections.Dictionary<BuildingType, bool>();
-	public int money = 100000;
+
+	public int money = 5000; 
+
 	public int day = 0;
 
 	public bool PlacementEnabled = true;
@@ -167,6 +169,10 @@ public partial class PlayerData : Node
 		{
 			isBuildingUnlockedDict[state] = false;
 		}
+
+		//Temporary test because we dont have states activated.
+		//isBuildingUnlockedDict[BuildingType.barley_crop] = true;
+
 
 		DayInfo = new List<Day> // 0-indexed
 			{

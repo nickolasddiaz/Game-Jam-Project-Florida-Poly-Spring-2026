@@ -8,7 +8,14 @@ public partial class BuildingUi : Control
 	private PackedScene sceneFile;
 
 	[Export(PropertyHint.File, "*.tscn")]
+
+	
 	public string NextPath { get; set; } = string.Empty;
+
+
+
+	[Export]
+	public PlacementManager TargPlacement;
 
 
 	public override void _Ready()
@@ -32,6 +39,14 @@ public partial class BuildingUi : Control
 			sceneInstance.setTexture(texture);
 			sceneInstance.setBuildingType(buildingType);
 			inventoryContainer.AddChild(sceneInstance);
+
+			//For disabling you knwo shop unlcoks
+			sceneInstance.GetNode<Button>("%Button").Disabled = !PlayerData.Instance.isBuildingUnlockedDict[buildingType];
+
+			sceneInstance.GetNode<Button>("%Button").Pressed += () =>
+			{
+				TargPlacement.SelectBuilding(buildingType.ToString(), (Vector2I)buildPacked.Size, buildPacked.BuildingScene);
+			};
 		}
 
 		var continue_button = GetNode<Button>("%Continue");

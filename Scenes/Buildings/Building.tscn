@@ -5,13 +5,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5bbji"]
 size = Vector2(32, 32)
 
-[node name="Sprite2D" type="Sprite2D" unique_id=1577294057 groups=["Buildings"]]
+[node name="Sprite2D" type="Area2D" unique_id=1577294057 groups=["Buildings"]]
 scale = Vector2(2, 2)
+
+[node name="Visual" type="Sprite2D" parent="."]
 texture = ExtResource("1_yeok1")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=699028693 groups=["Buildings"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1400505206]
-position = Vector2(0, 4.7683716e-07)
-scale = Vector2(0.9999999, 0.9999999)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1400505206]
 shape = SubResource("RectangleShape2D_5bbji")
