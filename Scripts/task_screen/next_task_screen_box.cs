@@ -23,8 +23,6 @@ public partial class next_task_screen_box : ColorRect
 
 	}
 
-
-
 	public void setTexture(Texture2D pic)
 	{
 		pendingTexture = pic;
