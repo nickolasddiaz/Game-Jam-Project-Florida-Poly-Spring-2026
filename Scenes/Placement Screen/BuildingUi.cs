@@ -56,9 +56,7 @@ public partial class BuildingUi : Control
 
 	private void OnButtonPressed()
 	{
-		PlayerData.Instance.PlacementEnabled = false;
-		PlayerData.Instance.placementManager.ProcessMode = ProcessModeEnum.Disabled;
-		PlayerData.Instance.placementManager.Visible = false;
+		PlayerData.Instance.placementToGameplayTransition();
 	}
 
 

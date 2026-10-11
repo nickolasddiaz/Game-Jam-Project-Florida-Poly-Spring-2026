@@ -22,8 +22,17 @@ scale = Vector2(0.931, 0.872)
 [node name="PlacementManager" parent="." unique_id=993788854 node_paths=PackedStringArray("PlacementUI") instance=ExtResource("2_4jtd1")]
 PlacementUI = NodePath("../BuildingUi")
 
-[node name="BuildingUi" parent="." unique_id=1396722294 node_paths=PackedStringArray("TargPlacement") instance=ExtResource("3_ftlg0")]
-TargPlacement = NodePath("../PlacementManager")
+[node name="ProductScreen" parent="." unique_id=1277831403 instance=ExtResource("4_ftlg0")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 84.99999
+offset_top = -9.0
+offset_right = 84.99999
+offset_bottom = -9.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.73824155, 0.80905193)
 
 [node name="ProductScreen" parent="." unique_id=1277831403 instance=ExtResource("4_ftlg0")]
 offset_left = 111.0
