@@ -63,7 +63,7 @@ public partial class BuildingUi : Control
 
 			sceneInstance.GetNode<Button>("%Button").Pressed += () =>
 			{
-				TargPlacement.SelectBuilding(buildingType.ToString(), (Vector2I)buildPacked.Size, buildPacked.BuildingScene);
+				TargPlacement.SelectBuilding(buildPacked.BuildingScene);
 			};
 		}
 

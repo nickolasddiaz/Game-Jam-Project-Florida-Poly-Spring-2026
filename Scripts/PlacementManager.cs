@@ -27,7 +27,7 @@ public partial class PlacementManager : Node2D
 
 
 
-	private string buildingnames = "Crop Plot";
+
 	private Vector2I buildingsize = new Vector2I(1, 1);
 
 	//Adding building cost because we are integrating
@@ -68,7 +68,7 @@ public partial class PlacementManager : Node2D
 
 
 
-	public void SelectBuilding(string buildingname, Vector2I footprint, PackedScene bulidingscene)
+	public void SelectBuilding(PackedScene bulidingscene)
 	{
 
 		if (bulidingscene == null)
@@ -87,7 +87,7 @@ public partial class PlacementManager : Node2D
 
 		//this was before I added Ms Code, so everything above is working with his building.cs 
 		//changing variables to read placement properties from the building class.
-		buildingnames = buildingname;
+		
 		buildingsize = (Vector2I)building.Size;
 		buildingcost = building.Cost;
 		MySceneToSpawn = bulidingscene;
@@ -149,10 +149,7 @@ public partial class PlacementManager : Node2D
 			return;
 		}
 		//If something is already there then no. because dictionary says so.
-		if (IsCellOccupied(clickedCell))
-		{
-			return;
-		}
+		
 
 		if (PlayerData.Instance == null)
 		{
@@ -254,16 +251,9 @@ public partial class PlacementManager : Node2D
 	public override void _Draw()
 	{
 		//more hiding stuff ---and then added || because of the no select bug. Links to unhandled input which should rejectp lacement.
-		if (!PlacementEnabled || MySceneToSpawn == null) {
+		if (!PlacementEnabled || MySceneToSpawn == null || !mouseingrid) {
 			return;
 		}
-
-		//if not thogh
-		if (!mouseingrid)
-		{
-			return;
-		}
-
 		//Since the rectangles origin is 0,0 they are drawn top left. This means we need to divide from the axis.
 		//Preview not artual building placement.
 
