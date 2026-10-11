@@ -3,14 +3,24 @@
 [ext_resource type="Script" uid="uid://cxvvki4340i4p" path="res://Scenes/Placement Screen/BuildingUiButton.cs" id="1_c5yud"]
 [ext_resource type="Texture2D" uid="uid://46ewnev6ydgf" path="res://Assets/placeholder.png" id="2_s4tsl"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_c5yud"]
+line_spacing = 1.0
+font_size = 8
+
 [node name="building_ui_button" type="Control" unique_id=1382138230]
-custom_minimum_size = Vector2(128, 128)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = -1056.0
+offset_bottom = -552.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_c5yud")
 
 [node name="Label" type="Label" parent="." unique_id=2014708918]
@@ -21,6 +31,7 @@ offset_top = 39.0
 offset_right = 86.0
 offset_bottom = 62.0
 text = "Text"
+label_settings = SubResource("LabelSettings_c5yud")
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="." unique_id=1216280930]
