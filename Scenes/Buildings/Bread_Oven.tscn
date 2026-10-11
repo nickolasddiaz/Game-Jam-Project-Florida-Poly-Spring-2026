@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://crc4042k7t7jc"]
+
+[ext_resource type="Script" uid="uid://b286fnoe65678" path="res://Scripts/buildings/BreadOven.cs" id="1_2ouoo"]
+[ext_resource type="PackedScene" uid="uid://do0y2wwglgffs" path="res://Scenes/Buildings/Building.tscn" id="1_dla7f"]
+[ext_resource type="Texture2D" uid="uid://46ewnev6ydgf" path="res://Assets/placeholder.png" id="3_phahs"]
+
+[node name="Sprite2D" unique_id=1577294057 instance=ExtResource("1_dla7f")]
+script = ExtResource("1_2ouoo")
+pic = ExtResource("3_phahs")

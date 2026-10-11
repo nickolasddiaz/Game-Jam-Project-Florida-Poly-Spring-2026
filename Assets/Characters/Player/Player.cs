@@ -138,16 +138,16 @@ public partial class Player : CharacterBody2D
 				Vector2 toTarget = destination - GlobalPosition;
 				float arrive = Mathf.Max(ArriveDistance, Speed * (float)delta);
 
-				if (toTarget.Length() <= arrive)
-				{
-					Building arrived = _target.Building;
-					_hasTarget = false;
-					arrived?.Interact(this);
-				}
-				else
-				{
-					direction = toTarget.Normalized();
-				}
+				//if (toTarget.Length() <= arrive)
+				//{
+					//Building arrived = _target.Building;
+					//_hasTarget = false;
+					////arrived?.Interact(this);
+				//}
+				//else
+				//{
+					//direction = toTarget.Normalized();
+				//}
 			}
 		}
 
