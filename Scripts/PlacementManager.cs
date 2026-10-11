@@ -50,19 +50,8 @@ public partial class PlacementManager : Node2D
 		GetNode<Player>("../Player").SetControlEnabled(false);
 	}
 
-	//Temporary switch f4 for testing.
-	public override void _Input(InputEvent @event)
-	{
-		if (@event is InputEventKey key && key.Pressed && !key.Echo && key.Keycode == Key.F4)
-		{
-			SetPlacementEnabled(!PlacementEnabled);
+	
 
-			Player player = GetNode<Player>("../Player");
-			player.SetControlEnabled(!PlacementEnabled);
-
-			GetViewport().SetInputAsHandled();
-		}
-	}
 
 	public void SetPlacementEnabled(bool enabled)
 	{

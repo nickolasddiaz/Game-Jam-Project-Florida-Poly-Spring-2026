@@ -84,21 +84,27 @@ public partial class PlayerData : Node
 		var today = DayInfo[day];
 		money += today.numberOfMoneyGiven;
 		time = today.time;
-		isBuildingUnlockedDict[today.unlockable_building] = true;
-		productAmounts = today.productNeeds.Duplicate();
+		isBuildingUnlockedDict[today.unlockable_building] = false;
+		
 		productScreen.setTimeText(formatTime());
 		productScreen.updateProductAmounts();
 	}
 
-	public void placementToGameplayTransition()
-	{
-		PlacementEnabled = false;
-		placementManager.ProcessMode = ProcessModeEnum.Disabled;
-		placementManager.Visible = false;
-		startTimer = true;
-	}
+    public void placementToGameplayTransition()
+    {
+        PlacementEnabled = false;
+        placementManager.SetPlacementEnabled(false);
 
-	public void gameplayToEndofDay()
+        placementManager.GetNode<Player>("../Player")
+            .SetControlEnabled(true);
+
+        placementManager.Visible = false;
+        placementManager.ProcessMode = ProcessModeEnum.Disabled;
+
+        startTimer = true;
+    }
+
+    public void gameplayToEndofDay()
 	{
 		PlacementEnabled = true;
 		placementManager.ProcessMode = ProcessModeEnum.Inherit;
