@@ -1,12 +1,6 @@
-<<<<<<< Updated upstream
 [gd_scene format=3 uid="uid://cs7ja0ly4b8mt"]
 
 [ext_resource type="Texture2D" uid="uid://bwgpaydd6y8mw" path="res://Assets/spr_tilesetGrassSimple.png" id="1_yt53x"]
-=======
-[gd_scene format=3 uid="uid://klqop2w502a8"]
-
-[ext_resource type="Texture2D" path="res://Assets/spr_tilesetGrassSimple.png" id="1_yt53x"]
->>>>>>> Stashed changes
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j57f5"]
 texture = ExtResource("1_yt53x")
@@ -35,10 +29,9 @@ texture_region_size = Vector2i(32, 32)
 2:4/0 = 0
 3:4/0 = 0
 4:4/0 = 0
-0:2/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_x0ecw"]
 sources/0 = SubResource("TileSetAtlasSource_j57f5")
 
-[node name="TsetGrassAndStone" type="TileMapLayer" unique_id=1579985647]
+[node name="TsetGrassAndStone" type="TileMapLayer" unique_id=593060078]
 tile_set = SubResource("TileSet_x0ecw")
