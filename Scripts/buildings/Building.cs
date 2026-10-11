@@ -10,7 +10,10 @@ public abstract partial class Building : Area2D
 	[Export] public Vector2 Size { get; set; } = new Vector2(1, 1);
 	[Export] public Texture2D pic { get; set; }
 
-	public abstract void OnInteract();
+	public virtual void OnInteract()
+	{
+
+	}
 
 	public override void _Ready()
 	{
@@ -22,7 +25,10 @@ public abstract partial class Building : Area2D
 		// Shared frame processing can go here
 	}
 
-	public abstract void Interact(Player player);
+	public virtual void Interact(Player player)
+	{
+		OnInteract();
+	}
 
 	public virtual void InteractSecondary(Player player)
 	{

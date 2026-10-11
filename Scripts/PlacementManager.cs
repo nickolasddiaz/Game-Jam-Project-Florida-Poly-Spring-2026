@@ -23,7 +23,7 @@ public partial class PlacementManager : Node2D
 
 
 	//this is more toggling for ui and the cyan color.
-	[Export] public CanvasLayer PlacementUI;
+	[Export] public Control PlacementUI;
 
 
 
@@ -32,6 +32,7 @@ public partial class PlacementManager : Node2D
 
 	//Adding building cost because we are integrating
 	private int buildingcost;
+
 
 
 
@@ -50,9 +51,9 @@ public partial class PlacementManager : Node2D
 	//Temporary switch f4 for testing.
 	public override void _Input(InputEvent @event)
 	{
-		if (@event is InputEventKey key && key.Pressed && !key.Echo && key.Keycode == key.F4)
+		if (@event is InputEventKey key && key.Pressed && !key.Echo && key.Keycode == Key.F4)
 		{
-			SetPlacementEnabled.(!PlacementEnabled);
+			SetPlacementEnabled(!PlacementEnabled);
 
 			Player player = GetNode<Player>("../Player");
 			player.SetControlEnabled(!PlacementEnabled);
@@ -71,7 +72,7 @@ public partial class PlacementManager : Node2D
 		}
 
 		QueueRedraw();
-		Getnode<Area2D>("%ValidPlacement").QueueRedraw();
+		GetNode<Area2D>("%ValidPlacement").QueueRedraw();
 	}
 
 

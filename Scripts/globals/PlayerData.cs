@@ -63,26 +63,26 @@ public class BuildingData
 public partial class PlayerData : Node
 {
 
-	public Dictionary<BuildingType, BuildingData> Buildings = new()
-	{
-		{ BuildingType.barley_crop, new BuildingData("res://Scenes/Buildings/Barley_Crop.tscn") },
-		{ BuildingType.cabbage_crop, new BuildingData("res://Scenes/Buildings/Cabbage_Crop.tscn") },
-		{ BuildingType.grape_crop, new BuildingData("res://Scenes/Buildings/Grape_Crop.tscn") },
-		{ BuildingType.sheep_pen, new BuildingData("res://Scenes/Buildings/Sheep_Pen.tscn") },
-		{ BuildingType.cow_pen, new BuildingData("res://Scenes/Buildings/Cow_Pen.tscn") },
-		{ BuildingType.bread_oven, new BuildingData("res://Scenes/Buildings/Bread_Oven.tscn") },
-		{ BuildingType.distillary, new BuildingData("res://Scenes/Buildings/Distillery.tscn") },
-		{ BuildingType.hut, new BuildingData("res://Scenes/Buildings/Hut.tscn") },
-	};
+    public Dictionary<BuildingType, BuildingData> Buildings = new()
+{
+    { BuildingType.barley_crop, new BuildingData("res://Scenes/Product Screen/Buildings/BarleyCrop.tscn") },
+    { BuildingType.cabbage_crop, new BuildingData("res://Scenes/Product Screen/Buildings/CabbageCrop.tscn") },
+    { BuildingType.grape_crop, new BuildingData("res://Scenes/Product Screen/Buildings/GrapeCrop.tscn") },
+    { BuildingType.sheep_pen, new BuildingData("res://Scenes/Product Screen/Buildings/SheepPen.tscn") },
+    { BuildingType.cow_pen, new BuildingData("res://Scenes/Product Screen/Buildings/CowPen.tscn") },
+    { BuildingType.bread_oven, new BuildingData("res://Scenes/Product Screen/Buildings/BreadOven.tscn") },
+    { BuildingType.distillary, new BuildingData("res://Scenes/Product Screen/Buildings/Distillery.tscn") },
+    { BuildingType.hut, new BuildingData("res://Scenes/Buildings/Hut.tscn") },
+};
 
-	public static PlayerData Instance { get; private set; } // setting PlayerData static
+    public static PlayerData Instance { get; private set; } // setting PlayerData static
 
 	// look at NextTaskScreen to know how to loop through this
 	public Godot.Collections.Dictionary<ProductType, int> productAmounts = new Godot.Collections.Dictionary<ProductType, int>();
 
 	public Godot.Collections.Dictionary<BuildingType, bool> isBuildingUnlockedDict = new Godot.Collections.Dictionary<BuildingType, bool>();
 
-	public int money = 5000;
+	public int money = 5000; 
 
 	public int day = 0;
 
@@ -112,6 +112,9 @@ public partial class PlayerData : Node
 		{
 			isBuildingUnlockedDict[state] = false;
 		}
+
+		//Temporary test because we dont have states activated.
+		//isBuildingUnlockedDict[BuildingType.barley_crop] = true;
 
 
 		DayInfo = new List<Day> // 0-indexed
