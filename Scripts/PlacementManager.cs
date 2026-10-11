@@ -8,38 +8,76 @@ public partial class PlacementManager : Node2D
 	[Export]
 	public Color GridColor = new Color(0.5f, 0.5f, 0.5f, 0.8f);
 
+	[Export]
+	public PackedScene MySceneToSpawn {  get; set; }
+
 	public float cellsize = 32;
+
 	private TileMapLayer GridPlacement;
+
 	private Vector2I hoveredcell;
+
 	private bool mouseingrid;
+
+	public bool PlacementEnabled = true;
+
+
+	//this is more toggling for ui and the cyan color.
+	[Export] public Control PlacementUI;
+
+
+
+	private string buildingnames = "Crop Plot";
+	private Vector2I buildingsize = new Vector2I(1, 1);
+
+	//Adding building cost because we are integrating
+	private int buildingcost;
+
+
+
 
 	//So we need a dictionary because we need to know WHAT we are moving IF we are actually going to implement moving/deleting
 	private Dictionary<Vector2I, Node2D> occupiedcells = new Dictionary<Vector2I, Node2D>();
 
 	public override void _Ready()
 	{
-		//fixing the bug where placement doesn't even work.
 		GridPlacement = GetNode<TileMapLayer>("GridPlacement");
+		MySceneToSpawn = null;
 
-		PlayerData.Instance.placementManager = this;
-
-
-		//THIS IS CONTROLLING THE PLACEMENT ENABLING
 		SetPlacementEnabled(true);
+		GetNode<Player>("../Player").SetControlEnabled(false);
 	}
 
-	//toggling placement so that whenever we need to..buy mode...and whenever we need too...paly mode.
+	//Temporary switch f4 for testing.
+	public override void _Input(InputEvent @event)
+	{
+		if (@event is InputEventKey key && key.Pressed && !key.Echo && key.Keycode == Key.F4)
+		{
+			SetPlacementEnabled(!PlacementEnabled);
+
+			Player player = GetNode<Player>("../Player");
+			player.SetControlEnabled(!PlacementEnabled);
+
+			GetViewport().SetInputAsHandled();
+		}
+	}
+
 	public void SetPlacementEnabled(bool enabled)
 	{
-		//THIS IS WHAT PROGRAMMERS WILL USE TO TOGLLE PLACEMENT SYSTEM. placementManager.SetPlacementEnabled(true) editing. or false; gameplay.
-		PlayerData.Instance.PlacementEnabled = enabled;
+		PlacementEnabled = enabled;
 
-		//Update the preview when it changes
+		if (PlacementUI != null)
+		{
+			PlacementUI.Visible = enabled;
+		}
+
 		QueueRedraw();
 		GetNode<Area2D>("%ValidPlacement").QueueRedraw();
 	}
 
-	public void SelectBuilding(PackedScene bulidingscene)
+
+
+	public void SelectBuilding(string buildingname, Vector2I footprint, PackedScene bulidingscene)
 	{
 
 		if (bulidingscene == null)
@@ -58,6 +96,10 @@ public partial class PlacementManager : Node2D
 
 		//this was before I added Ms Code, so everything above is working with his building.cs 
 		//changing variables to read placement properties from the building class.
+		buildingnames = buildingname;
+		buildingsize = (Vector2I)building.Size;
+		buildingcost = building.Cost;
+		MySceneToSpawn = bulidingscene;
 
 		//sinec we just need properties I already have dealings with placing
 		instance.Free();
@@ -78,7 +120,7 @@ public partial class PlacementManager : Node2D
 	{
 		base._UnhandledInput(@event);
 		//ignore placement and hide during gameplay
-		if (!PlayerData.Instance.PlacementEnabled)
+		if (!PlacementEnabled)
 		{
 			return;
 		}
@@ -106,7 +148,7 @@ public partial class PlacementManager : Node2D
 			return;
 		}
 		//Probably not necessary but making sure we assign as cene.
-		if (PlayerData.Instance.MySceneToSpawn == null)
+		if (MySceneToSpawn == null)
 		{
 			return;
 		}
@@ -122,37 +164,37 @@ public partial class PlacementManager : Node2D
 		}
 
 		//If player can't afford it dont place it.
-		if (PlayerData.Instance.money < PlayerData.Instance.buildingcost)
+		if (PlayerData.Instance.money < buildingcost)
 		{ //just debug can make it nice later.
-			GD.Print($"Not enough money. Need {PlayerData.Instance.buildingcost}.");
+			GD.Print($"Not enough money. Need {buildingcost}.");
 			return;
 		   
 		}
 
+	   
+
 		//Create the actual building and spawn it at the center of the cells. 2x2 etc. so not like on click.
-		Node2D building = PlayerData.Instance.MySceneToSpawn.Instantiate<Node2D>();
+		Node2D building = MySceneToSpawn.Instantiate<Node2D>();
 
 		//centering
-		Vector2I cencell = clickedCell + PlayerData.Instance.buildingsize - new Vector2I(1, 1);
+		Vector2I cencell = clickedCell + buildingsize - new Vector2I(1, 1);
 
 		building.Position = (GetCellCenter(clickedCell) + GetCellCenter(cencell)) / 2f;
 
 		//Basically putting it down/making sure that the cell is actually recorded and saved.
-		for (int x = 0; x < PlayerData.Instance.buildingsize.X; x++)
+		for (int x = 0; x < buildingsize.X; x++)
 		{
-			for (int y = 0; y < PlayerData.Instance.buildingsize.Y; y++)
+			for (int y = 0; y < buildingsize.Y; y++)
 			{
 				Vector2I cell = clickedCell + new Vector2I(x, y);
 				occupiedcells.Add(cell, building);
 			}
 		}
-		PlayerData.Instance.BuildingContainer.AddChild(building);
+		AddChild(building);
 
 		//Reducing money only after the building has been placed.
-		PlayerData.Instance.money -= PlayerData.Instance.buildingcost;
+		PlayerData.Instance.money -= buildingcost;
 		GD.Print($"Money remaining: {PlayerData.Instance.money}");
-
-		PlayerData.Instance.PlacementEnabled = false;
 
 		QueueRedraw();
 		//debugging print we can remove this.
@@ -170,9 +212,9 @@ public partial class PlacementManager : Node2D
 	//Placing the building. THIS IS NOT THE PREVIEW. 
 	private bool CanPlaceBuilding(Vector2I clickcell)
 	{
-		for (int x = 0; x < PlayerData.Instance.buildingsize.X; x++)
+		for (int x = 0; x < buildingsize.X; x++)
 		{
-			for (int y = 0;y < PlayerData.Instance.buildingsize.Y; y++)
+			for (int y = 0;y < buildingsize.Y; y++)
 			{
 				Vector2I cell = clickcell + new Vector2I(x, y);
 
@@ -211,7 +253,7 @@ public partial class PlacementManager : Node2D
 	public override void _Draw()
 	{
 		//more hiding stuff ---and then added || because of the no select bug. Links to unhandled input which should rejectp lacement.
-		if (!PlayerData.Instance.PlacementEnabled || PlayerData.Instance.MySceneToSpawn == null) {
+		if (!PlacementEnabled || MySceneToSpawn == null) {
 			return;
 		}
 
@@ -227,7 +269,7 @@ public partial class PlacementManager : Node2D
 		Vector2 cellposition = GetCellCenter(hoveredcell) - new Vector2(cellsize / 2f, cellsize / 2f);
 
 		//I dont know if we need this resize actually. It might double scale
-		Vector2 size = new Vector2(PlayerData.Instance.buildingsize.X * cellsize, PlayerData.Instance.buildingsize.Y * cellsize);
+		Vector2 size = new Vector2(buildingsize.X * cellsize, buildingsize.Y * cellsize);
 		Rect2 preview = new Rect2(cellposition, size);
 
 		Color outlinecolor = Colors.Cyan;

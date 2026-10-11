@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dgsfq4kruaet1"]
+
+[ext_resource type="Script" uid="uid://b0cj1dl435tq3" path="res://Scripts/buildings/CropTile.cs" id="1_crop"]
+[ext_resource type="SpriteFrames" uid="uid://bvxtc7y6jqat8" path="res://Assets/Buildings/CropFrames.tres" id="2_gnaao"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(32, 32)
+
+[node name="BarleyCrop" type="Area2D" unique_id=722447844]
+script = ExtResource("1_crop")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=254912018]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="BaseSprite" type="AnimatedSprite2D" parent="." unique_id=7919834]
+texture_filter = 1
+sprite_frames = ExtResource("2_gnaao")
+animation = &"BASE"
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://Assets/Buildings/spr_cropTile.aseprite",
+"source_uid": 1044189118801352605
+}
+metadata/_aseprite_wizard_source_file_hash_ = "5ed22553004b27b0e1216eed88398437"

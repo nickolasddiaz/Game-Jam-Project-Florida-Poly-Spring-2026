@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://dp0v0dqf2os1p"]
+
+[ext_resource type="Script" uid="uid://c8t8a2etdg410" path="res://Scripts/buildings/ProductionBuilding.cs" id="1_prod"]
+[ext_resource type="SpriteFrames" uid="uid://djxktavb45k7s" path="res://Assets/Buildings/Items/ItemFrames.tres" id="2_b46ml"]
+[ext_resource type="SpriteFrames" uid="uid://bfqa2uu8vm3b" path="res://Assets/Buildings/PenFrames.tres" id="2_goffb"]
+[ext_resource type="Script" uid="uid://dtsl1coow410u" path="res://Scripts/buildings/ItemSprite.cs" id="2_item"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(64, 32)
+
+[node name="SheepPen" type="Area2D" unique_id=1655805192]
+script = ExtResource("1_prod")
+Size = Vector2i(2, 1)
+Cost = 500
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1322798570]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="BaseSprite" type="AnimatedSprite2D" parent="." unique_id=578461639]
+texture_filter = 1
+sprite_frames = ExtResource("2_goffb")
+animation = &"EMPTY"
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": false,
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://Assets/Buildings/spr_pen.aseprite",
+"source_uid": 3796143777709957539
+}
+metadata/_aseprite_wizard_source_file_hash_ = "eee57c91dd8088166ca38084fc707db6"
+
+[node name="Feed1" type="AnimatedSprite2D" parent="." unique_id=236245522]
+visible = false
+texture_filter = 1
+position = Vector2(-24, -8)
+sprite_frames = ExtResource("2_b46ml")
+animation = &"BARLEY"
+frame_progress = 0.10554653
+script = ExtResource("2_item")
+metadata/_aseprite_wizard_interface_config_ = {
+"animation_section": false,
+"layer_section": false,
+"pending_changes": {},
+"slice_section": false
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"scale": "1.0",
+"should_round_fps": true,
+"slice": "",
+"source": "res://Assets/Buildings/Items/spr_items.aseprite",
+"source_uid": 6095330539552001955
+}
+metadata/_aseprite_wizard_source_file_hash_ = "2c8dcc8da2c78ec266d543b92e3fb25e"
+
+[node name="Feed2" type="AnimatedSprite2D" parent="." unique_id=1490990426]
+visible = false
+position = Vector2(-8, -8)
+sprite_frames = ExtResource("2_b46ml")
+animation = &"BARLEY"
+script = ExtResource("2_item")
+
+[node name="Feed3" type="AnimatedSprite2D" parent="." unique_id=528193514]
+visible = false
+position = Vector2(8, -8)
+sprite_frames = ExtResource("2_b46ml")
+animation = &"BARLEY"
+script = ExtResource("2_item")
+
+[node name="Product1" type="AnimatedSprite2D" parent="." unique_id=161330222]
+visible = false
+position = Vector2(-24, 8)
+sprite_frames = ExtResource("2_b46ml")
+animation = &"WOOl"
+script = ExtResource("2_item")
+
+[node name="Product2" type="AnimatedSprite2D" parent="." unique_id=1957628084]
+visible = false
+position = Vector2(-8, 8)
+sprite_frames = ExtResource("2_b46ml")
+animation = &"WOOl"
+script = ExtResource("2_item")
+
+[node name="Product3" type="AnimatedSprite2D" parent="." unique_id=1028217262]
+visible = false
+position = Vector2(8, 8)
+sprite_frames = ExtResource("2_b46ml")
+animation = &"WOOl"
+script = ExtResource("2_item")
