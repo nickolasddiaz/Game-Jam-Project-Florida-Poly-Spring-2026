@@ -85,7 +85,7 @@ public partial class PlayerData : Node
 		money += today.numberOfMoneyGiven;
 		time = today.time;
 		for (int i = 0; i <= day; i++) {
-			isBuildingUnlockedDict[today.unlockable_building] = false;
+			isBuildingUnlockedDict[today.unlockable_building] = true;
 		}
 		productScreen.setTimeText(formatTime());
 		productScreen.updateProductAmounts();
