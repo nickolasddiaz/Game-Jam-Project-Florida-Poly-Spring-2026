@@ -154,12 +154,13 @@ public partial class PlayerData : Node
 	{
 		Instance = this; // setting PlayerData static
         SpriteFrames itemIcons = GD.Load<SpriteFrames>(
-    "res://Assets/Buildings/Items/ItemFrames.tres"
-);
+     "res://Assets/Product Icons/spr_productIcons.aseprite"
+ );
 
-        ProductIcons[ProductType.barley] = itemIcons.GetFrameTexture("BARLEY", 0);
+        ProductIcons[ProductType.barley] = itemIcons.GetFrameTexture("WHEAT", 0);
+        ProductIcons[ProductType.cabbage] = itemIcons.GetFrameTexture("CABBAGE", 0);
         ProductIcons[ProductType.grape] = itemIcons.GetFrameTexture("GRAPES", 0);
-        ProductIcons[ProductType.wool] = itemIcons.GetFrameTexture("WOOl", 0);
+        ProductIcons[ProductType.wool] = itemIcons.GetFrameTexture("WOOL", 0);
         ProductIcons[ProductType.milk] = itemIcons.GetFrameTexture("MILK", 0);
         ProductIcons[ProductType.bread] = itemIcons.GetFrameTexture("BREAD", 0);
         ProductIcons[ProductType.wine] = itemIcons.GetFrameTexture("WINE", 0);
