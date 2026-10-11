@@ -21,6 +21,8 @@ public partial class BuildingUi : Control
 	public override void _Ready()
 	{
 		inventoryContainer = GetNode<GridContainer>("%GridContainer");
+		TargPlacement = GetParent<PlacementManager>();
+
 		sceneFile = GD.Load<PackedScene>("res://Scenes/Placement Screen/building_ui_button.tscn");
 
 		foreach (Node child in inventoryContainer.GetChildren())

@@ -42,6 +42,7 @@ public partial class PlacementManager : Node2D
 	public override void _Ready()
 	{
 		GridPlacement = GetNode<TileMapLayer>("GridPlacement");
+		PlayerData.Instance.placementManager = this;
 		MySceneToSpawn = null;
 
 		SetPlacementEnabled(true);
