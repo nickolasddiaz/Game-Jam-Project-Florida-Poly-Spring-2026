@@ -1,7 +1,7 @@
 [remap]
 
-importer="aseprite_wizard.plugin.spriteframes"
-type="SpriteFrames"
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
 uid="uid://dm2tpvqby862"
 path="res://.godot/imported/spr_productIcons.aseprite-eaa37af9753ba94db82dc932db63fc50.res"
 
@@ -12,10 +12,3 @@ dest_files=["res://.godot/imported/spr_productIcons.aseprite-eaa37af9753ba94db82
 
 [params]
 
-layer/exclude_layers_pattern=""
-layer/only_visible_layers=false
-sheet/sheet_type="packed"
-sheet/sheet_columns=12
-sheet/frame_padding=0
-sheet/scale=1
-animation/round_fps=true
