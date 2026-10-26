@@ -1,0 +1,9 @@
+{
+  "files.exclude": {
+    "**/*uid": true,
+    "**/.godot": true,
+    "**/addons": true,
+    "**/*import": true,
+    "**/*tscn": true
+  }
+}

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dwb5unstn3qab"]
+
+[ext_resource type="Script" uid="uid://jek44eg0yuee" path="res://Global Scripts/DayInfo.cs" id="1_whoq3"]
+
+[node name="DayInfo" type="Node" unique_id=878059571]
+script = ExtResource("1_whoq3")
+JsonDayFile = "res://Global Scripts/DayInfo.json"

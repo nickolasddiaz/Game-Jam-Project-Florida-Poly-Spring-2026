@@ -5,12 +5,14 @@ public partial class BuildingUi : Control
 {
 
 	private GridContainer inventoryContainer;
-	private PackedScene sceneFile;
+
+
+	[Export]
+	private PackedScene BuildingUIButton;
+
 
 	[Export(PropertyHint.File, "*.tscn")]
-
-	
-	public string NextPath { get; set; } = string.Empty;
+	public string NextPath { get; set; }
 
 
 
@@ -21,54 +23,37 @@ public partial class BuildingUi : Control
 	public override void _Ready()
 	{
 		inventoryContainer = GetNode<GridContainer>("%GridContainer");
+		GetNode<Button>("%Continue").Pressed += OnButtonPressed;
 		TargPlacement = GetParent<PlacementManager>();
-
-		sceneFile = GD.Load<PackedScene>("res://Scenes/Placement Screen/building_ui_button.tscn");
-
-		SpriteFrames icons = GD.Load<SpriteFrames>("res://Assets/Placement Icons/spr_placement.aseprite");
-
 
 		foreach (Node child in inventoryContainer.GetChildren())
 		{
 			child.QueueFree();
 		}
 
-		foreach (var (buildingType, buildPacked) in PlayerData.Instance.Buildings) 
+		foreach (var (buildingType, buildData) in PlayerData.Instance.Buildings) 
 {
 			// Fetch cost/texture from a lightweight data source instead of instantiating the whole scene tree
-			int cost = buildPacked.Cost;
-            string iconName = buildingType switch
-            {
-                BuildingType.barley_crop => "BARLEY_SEED",
-                BuildingType.cabbage_crop => "CABBAGE_SEED",
-                BuildingType.grape_crop => "GRAPE_SEED",
-                BuildingType.sheep_pen => "SHEEP_PEN",
-                BuildingType.cow_pen => "COW_PEN",
-                BuildingType.bread_oven => "BREAD_OVEN",
-                BuildingType.distillary => "DISTILLERY",
-                _ => "BASE"
-            };
+			int cost = buildData.Cost;
+            string iconName = buildingType.ToString();
 
-            Texture2D texture = icons.GetFrameTexture(iconName, 0);
+            Texture2D texture = buildData.IconTexture;
 
 
-            BuildingUiButton sceneInstance = sceneFile.Instantiate<BuildingUiButton>();
+            BuildingUiButton sceneInstance = BuildingUIButton.Instantiate<BuildingUiButton>();
 			sceneInstance.setText($"{cost}\n{buildingType}");
 			sceneInstance.setTexture(texture);
 			sceneInstance.setBuildingType(buildingType);
 			inventoryContainer.AddChild(sceneInstance);
 
-			//For disabling you knwo shop unlcoks
+			//For disabling you know shop unlocks
 			sceneInstance.GetNode<Button>("%Button").Disabled = !PlayerData.Instance.isBuildingUnlockedDict[buildingType];
 
 			sceneInstance.GetNode<Button>("%Button").Pressed += () =>
 			{
-				TargPlacement.SelectBuilding(buildPacked.BuildingScene);
+				TargPlacement.SelectBuilding(buildData.BuildingScene);
 			};
 		}
-
-		var continue_button = GetNode<Button>("%Continue");
-		continue_button.Pressed += OnButtonPressed;
 
 	}
 

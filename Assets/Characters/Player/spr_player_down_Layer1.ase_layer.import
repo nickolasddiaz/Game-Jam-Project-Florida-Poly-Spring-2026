@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.spriteframes-split-layer"
+type="SpriteFrames"
+uid="uid://bslqlwho1eq70"
+path="res://.godot/imported/spr_player_down_Layer1.ase_layer-10d52851c8d3c27ed0c2ad49c2ecad3b.res"
+
+[deps]
+
+source_file="res://Assets/Characters/Player/spr_player_down_Layer1.ase_layer"
+dest_files=["res://.godot/imported/spr_player_down_Layer1.ase_layer-10d52851c8d3c27ed0c2ad49c2ecad3b.res"]
+
+[params]
+

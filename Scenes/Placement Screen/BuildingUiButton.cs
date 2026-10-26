@@ -31,7 +31,7 @@ public partial class BuildingUiButton : Control
 		var buildings = PlayerData.Instance.Buildings[building];
 		PlayerData.Instance.buildingcost = buildings.Cost;
 		PlayerData.Instance.MySceneToSpawn = buildings.BuildingScene;
-		PlayerData.Instance.buildingsize = buildings.Size;
+		PlayerData.Instance.selectionBuildingsize = buildings.Size;
 	}
 
 	public void setBuildingType(BuildingType building){

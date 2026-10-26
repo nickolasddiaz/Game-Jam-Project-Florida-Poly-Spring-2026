@@ -10,13 +10,14 @@ config_version=5
 
 [application]
 
-config/name="Game Jam Project"
+config/name="To Be King"
 run/main_scene="uid://dnu7n6siro8m2"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 
 [autoload]
 
-PlayerData="*res://Scenes/player_data.tscn"
+DayInfo="*uid://dwb5unstn3qab"
+PlayerData="*res://Global Scripts/PlayerData.tscn"
 ScreenManager="*uid://bcijc7biouvwl"
 
 [display]

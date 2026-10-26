@@ -213,9 +213,10 @@ cscope.po.out
 *.swp
 
 # Visual Studio Code
-.vscode/
+# .vscode/
 *.code-workspace
 .history/
+*ruleset.xml
 
 # Xcode
 xcuserdata/

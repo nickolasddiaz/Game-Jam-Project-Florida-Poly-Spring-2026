@@ -1,7 +1,7 @@
 [remap]
 
-importer="aseprite_wizard.plugin.spriteframes"
-type="SpriteFrames"
+importer="aseprite_wizard.plugin.spriteframes-split"
+type="PackedDataContainer"
 uid="uid://bej3km5jfn7cs"
 path="res://.godot/imported/spr_player_down.aseprite-c6ae0d00474d1a43861bb0cb9f854ec3.res"
 
@@ -19,3 +19,4 @@ sheet/sheet_columns=12
 sheet/frame_padding=0
 sheet/scale=1
 animation/round_fps=true
+output/layers_resources_folder=""

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://crblgrxvow7i6"]
 
 [ext_resource type="PackedScene" uid="uid://do0y2wwglgffs" path="res://Scenes/Buildings/Building.tscn" id="1_mhepm"]
-[ext_resource type="Script" uid="uid://bmeu0pwguwiic" path="res://Scripts/buildings/Hut.cs" id="2_twha0"]
+[ext_resource type="Script" uid="uid://bmeu0pwguwiic" path="res://Scenes/Buildings/Hut.cs" id="2_twha0"]
 [ext_resource type="Texture2D" uid="uid://46ewnev6ydgf" path="res://Assets/placeholder.png" id="3_d3gdm"]
 
 [node name="Sprite2D" unique_id=1577294057 instance=ExtResource("1_mhepm")]

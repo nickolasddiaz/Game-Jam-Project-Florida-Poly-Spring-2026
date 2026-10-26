@@ -1,0 +1,19 @@
+[
+  {
+    "unlockable_building": "Barley_Crop",
+    "product_needs": {
+      "Barley": 10
+    },
+    "time": 200.0,
+    "number_of_money": 300
+  },
+  {
+    "unlockable_building": "Cabbage_Crop",
+    "product_needs": {
+      "Barley": 10,
+      "Cabbage": 10
+    },
+    "time": 200.0,
+    "number_of_money": 600
+  }
+]

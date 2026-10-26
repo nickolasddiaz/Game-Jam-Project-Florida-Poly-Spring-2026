@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dxnlki2diras7"]
 
 [ext_resource type="PackedScene" uid="uid://do0y2wwglgffs" path="res://Scenes/Buildings/Building.tscn" id="1_ivao5"]
-[ext_resource type="Script" uid="uid://c15cegdfi4oyu" path="res://Scripts/buildings/BarleyCrop.cs" id="2_ivao5"]
+[ext_resource type="Script" uid="uid://c15cegdfi4oyu" path="res://Scenes/Buildings/Barley_Crop.cs" id="2_ivao5"]
 [ext_resource type="Texture2D" uid="uid://46ewnev6ydgf" path="res://Assets/placeholder.png" id="3_q3fgs"]
 
 [node name="Sprite2D" unique_id=1577294057 instance=ExtResource("1_ivao5")]
