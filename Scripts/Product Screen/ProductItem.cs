@@ -4,7 +4,7 @@ using System;
 public partial class ProductItem : Control
 {
 	[Export(PropertyHint.File, "*.tscn")]
-	private Sprite2D productPic;
+	private TextureRect productPic;
 	private Texture2D pendingTexture;
 	private bool hasPendingTexture;
 	private Label productLabel;
@@ -13,7 +13,7 @@ public partial class ProductItem : Control
 
 	public override void _Ready()
 	{
-		productPic = GetNodeOrNull<Sprite2D>("%Sprite2D");
+		productPic = GetNodeOrNull<TextureRect>("%Sprite2D");
 		if (productPic != null && hasPendingTexture)
 			productPic.Texture = pendingTexture;
 
@@ -27,7 +27,7 @@ public partial class ProductItem : Control
 	{
 		pendingTexture = pic;
 		hasPendingTexture = true;
-		productPic ??= GetNodeOrNull<Sprite2D>("%Sprite2D");
+		productPic ??= GetNodeOrNull<TextureRect>("%Sprite2D");
 		if (productPic != null)
 			productPic.Texture = pic;
 	}

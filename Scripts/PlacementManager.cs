@@ -27,7 +27,7 @@ public partial class PlacementManager : Node2D
 
 
 
-	private string buildingnames = "Crop Plot";
+
 	private Vector2I buildingsize = new Vector2I(1, 1);
 
 	//Adding building cost because we are integrating
@@ -42,25 +42,16 @@ public partial class PlacementManager : Node2D
 	public override void _Ready()
 	{
 		GridPlacement = GetNode<TileMapLayer>("GridPlacement");
+		PlayerData.Instance.placementManager = this;
+		PlayerData.Instance.BuildingContainer = GetNode<Node2D>("../BuildingContainer");
 		MySceneToSpawn = null;
 
 		SetPlacementEnabled(true);
 		GetNode<Player>("../Player").SetControlEnabled(false);
 	}
 
-	//Temporary switch f4 for testing.
-	public override void _Input(InputEvent @event)
-	{
-		if (@event is InputEventKey key && key.Pressed && !key.Echo && key.Keycode == Key.F4)
-		{
-			SetPlacementEnabled(!PlacementEnabled);
+	
 
-			Player player = GetNode<Player>("../Player");
-			player.SetControlEnabled(!PlacementEnabled);
-
-			GetViewport().SetInputAsHandled();
-		}
-	}
 
 	public void SetPlacementEnabled(bool enabled)
 	{
@@ -77,7 +68,7 @@ public partial class PlacementManager : Node2D
 
 
 
-	public void SelectBuilding(string buildingname, Vector2I footprint, PackedScene bulidingscene)
+	public void SelectBuilding(PackedScene bulidingscene)
 	{
 
 		if (bulidingscene == null)
@@ -96,10 +87,11 @@ public partial class PlacementManager : Node2D
 
 		//this was before I added Ms Code, so everything above is working with his building.cs 
 		//changing variables to read placement properties from the building class.
-		buildingnames = buildingname;
+		
 		buildingsize = (Vector2I)building.Size;
 		buildingcost = building.Cost;
 		MySceneToSpawn = bulidingscene;
+		GetNode<AudioStreamPlayer>("SelectSound").Play();
 
 		//sinec we just need properties I already have dealings with placing
 		instance.Free();
@@ -145,6 +137,10 @@ public partial class PlacementManager : Node2D
 		//Says no to any clicks outside and modified to include occupancy for multiple slots.
 		if (!CanPlaceBuilding(clickedCell))
 		{
+			if (MySceneToSpawn != null)
+			{
+				GetNode<AudioStreamPlayer>("ErrorSound").Play();
+			}
 			return;
 		}
 		//Probably not necessary but making sure we assign as cene.
@@ -153,10 +149,7 @@ public partial class PlacementManager : Node2D
 			return;
 		}
 		//If something is already there then no. because dictionary says so.
-		if (IsCellOccupied(clickedCell))
-		{
-			return;
-		}
+		
 
 		if (PlayerData.Instance == null)
 		{
@@ -166,6 +159,8 @@ public partial class PlacementManager : Node2D
 		//If player can't afford it dont place it.
 		if (PlayerData.Instance.money < buildingcost)
 		{ //just debug can make it nice later.
+
+			GetNode<AudioStreamPlayer>("ErrorSound").Play();
 			GD.Print($"Not enough money. Need {buildingcost}.");
 			return;
 		   
@@ -179,10 +174,11 @@ public partial class PlacementManager : Node2D
 		//centering
 		Vector2I cencell = clickedCell + buildingsize - new Vector2I(1, 1);
 
-		building.Position = (GetCellCenter(clickedCell) + GetCellCenter(cencell)) / 2f;
+        Vector2 buildingPosition = ToGlobal( (GetCellCenter(clickedCell) + GetCellCenter(cencell)) / 2f
+);
 
-		//Basically putting it down/making sure that the cell is actually recorded and saved.
-		for (int x = 0; x < buildingsize.X; x++)
+        //Basically putting it down/making sure that the cell is actually recorded and saved.
+        for (int x = 0; x < buildingsize.X; x++)
 		{
 			for (int y = 0; y < buildingsize.Y; y++)
 			{
@@ -190,10 +186,12 @@ public partial class PlacementManager : Node2D
 				occupiedcells.Add(cell, building);
 			}
 		}
-		AddChild(building);
+		PlayerData.Instance.BuildingContainer.AddChild(building);
+		building.GlobalPosition = buildingPosition; 
 
 		//Reducing money only after the building has been placed.
 		PlayerData.Instance.money -= buildingcost;
+		GetNode<AudioStreamPlayer>("PlaceSound").Play();
 		GD.Print($"Money remaining: {PlayerData.Instance.money}");
 
 		QueueRedraw();
@@ -253,16 +251,9 @@ public partial class PlacementManager : Node2D
 	public override void _Draw()
 	{
 		//more hiding stuff ---and then added || because of the no select bug. Links to unhandled input which should rejectp lacement.
-		if (!PlacementEnabled || MySceneToSpawn == null) {
+		if (!PlacementEnabled || MySceneToSpawn == null || !mouseingrid) {
 			return;
 		}
-
-		//if not thogh
-		if (!mouseingrid)
-		{
-			return;
-		}
-
 		//Since the rectangles origin is 0,0 they are drawn top left. This means we need to divide from the axis.
 		//Preview not artual building placement.
 

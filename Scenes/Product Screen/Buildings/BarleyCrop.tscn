@@ -8,6 +8,7 @@ size = Vector2(32, 32)
 
 [node name="BarleyCrop" type="Area2D" unique_id=722447844]
 script = ExtResource("1_crop")
+SoilStrainEnabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=254912018]
 shape = SubResource("RectangleShape2D_1")

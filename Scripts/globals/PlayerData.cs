@@ -65,40 +65,47 @@ public partial class PlayerData : Node
 {
 	public PlacementManager placementManager;
 	public Node2D BuildingContainer;
-	public EndOfDayScreen endOfDayScreen;
+    public EndOfDayScreen endOfDayScreen;
 
-	public Dictionary<BuildingType, BuildingData> Buildings = new()
-	{
-		{ BuildingType.barley_crop, new BuildingData("res://Scenes/Buildings/Barley_Crop.tscn") },
-		{ BuildingType.cabbage_crop, new BuildingData("res://Scenes/Buildings/Cabbage_Crop.tscn") },
-		{ BuildingType.grape_crop, new BuildingData("res://Scenes/Buildings/Grape_Crop.tscn") },
-		{ BuildingType.sheep_pen, new BuildingData("res://Scenes/Buildings/Sheep_Pen.tscn") },
-		{ BuildingType.cow_pen, new BuildingData("res://Scenes/Buildings/Cow_Pen.tscn") },
-		{ BuildingType.bread_oven, new BuildingData("res://Scenes/Buildings/Bread_Oven.tscn") },
-		{ BuildingType.distillary, new BuildingData("res://Scenes/Buildings/Distillery.tscn") },
-		{ BuildingType.hut, new BuildingData("res://Scenes/Buildings/Hut.tscn") },
-	};
+    public Dictionary<BuildingType, BuildingData> Buildings = new()
+{
+    { BuildingType.barley_crop, new BuildingData("res://Scenes/Product Screen/Buildings/BarleyCrop.tscn") },
+    { BuildingType.cabbage_crop, new BuildingData("res://Scenes/Product Screen/Buildings/CabbageCrop.tscn") },
+    { BuildingType.grape_crop, new BuildingData("res://Scenes/Product Screen/Buildings/GrapeCrop.tscn") },
+    { BuildingType.sheep_pen, new BuildingData("res://Scenes/Product Screen/Buildings/SheepPen.tscn") },
+    { BuildingType.cow_pen, new BuildingData("res://Scenes/Product Screen/Buildings/CowPen.tscn") },
+    { BuildingType.bread_oven, new BuildingData("res://Scenes/Product Screen/Buildings/BreadOven.tscn") },
+    { BuildingType.distillary, new BuildingData("res://Scenes/Product Screen/Buildings/Distillery.tscn") },
+    
+};
 
-	public void newDay()
+    public void newDay()
 	{
 		var today = DayInfo[day];
 		money += today.numberOfMoneyGiven;
 		time = today.time;
-		isBuildingUnlockedDict[today.unlockable_building] = true;
-		productAmounts = today.productNeeds.Duplicate();
+		for (int i = 0; i <= day; i++) {
+			isBuildingUnlockedDict[today.unlockable_building] = true;
+		}
 		productScreen.setTimeText(formatTime());
 		productScreen.updateProductAmounts();
 	}
 
-	public void placementToGameplayTransition()
-	{
-		PlacementEnabled = false;
-		placementManager.ProcessMode = ProcessModeEnum.Disabled;
-		placementManager.Visible = false;
-		startTimer = true;
-	}
+    public void placementToGameplayTransition()
+    {
+        PlacementEnabled = false;
+        placementManager.SetPlacementEnabled(false);
 
-	public void gameplayToEndofDay()
+        placementManager.GetNode<Player>("../Player")
+            .SetControlEnabled(true);
+
+        placementManager.Visible = false;
+        placementManager.ProcessMode = ProcessModeEnum.Disabled;
+
+        startTimer = true;
+    }
+
+    public void gameplayToEndofDay()
 	{
 		PlacementEnabled = true;
 		placementManager.ProcessMode = ProcessModeEnum.Inherit;
@@ -160,18 +167,28 @@ public partial class PlayerData : Node
 	public override void _Ready()
 	{
 		Instance = this; // setting PlayerData static
-		foreach (ProductType state in Enum.GetValues<ProductType>())
+        SpriteFrames itemIcons = GD.Load<SpriteFrames>(
+     "res://Assets/Product Icons/spr_productIcons.aseprite"
+ );
+
+        ProductIcons[ProductType.barley] = itemIcons.GetFrameTexture("WHEAT", 0);
+        ProductIcons[ProductType.cabbage] = itemIcons.GetFrameTexture("CABBAGE", 0);
+        ProductIcons[ProductType.grape] = itemIcons.GetFrameTexture("GRAPES", 0);
+        ProductIcons[ProductType.wool] = itemIcons.GetFrameTexture("WOOL", 0);
+        ProductIcons[ProductType.milk] = itemIcons.GetFrameTexture("MILK", 0);
+        ProductIcons[ProductType.bread] = itemIcons.GetFrameTexture("BREAD", 0);
+        ProductIcons[ProductType.wine] = itemIcons.GetFrameTexture("WINE", 0);
+        ProductIcons[ProductType.ale] = itemIcons.GetFrameTexture("ALE", 0);
+        foreach (ProductType state in Enum.GetValues<ProductType>())
 		{
 			productAmounts[state] = 0;
 		}
 
 		foreach (BuildingType state in Enum.GetValues<BuildingType>())
 		{
-			isBuildingUnlockedDict[state] = false;
+			//temporary
+			isBuildingUnlockedDict[state] = true;
 		}
-
-		//Temporary test because we dont have states activated.
-		//isBuildingUnlockedDict[BuildingType.barley_crop] = true;
 
 
 		DayInfo = new List<Day> // 0-indexed
